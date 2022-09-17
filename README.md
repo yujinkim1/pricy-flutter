@@ -3,7 +3,12 @@
 - Yujin kim
 - Jinwoo Lee
 
-## Dev Environment
-- VScode IDE
-- Dart
-- Flutter 3
+## 🔨Dev Environment
+- VScodeIDE
+- Flutter3
+- Dart2
+
+## ✨Updates
+### 2022.09.17.
+- upgrading flutter 3.3
+    - `flutter upgrading`
