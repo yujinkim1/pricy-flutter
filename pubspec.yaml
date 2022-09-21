@@ -76,22 +76,22 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
  
-  #Mark(yujin)-add fonts
+  #Mark1: Add font files
   fonts:
     - family: NotoSans
       fonts:
-        - asset: fonts/NotoSans-Light.ttf
-        - asset: fonts/NotoSans-Regular.ttf
-        - asset: fonts/NotoSans-Medium.ttf
-        - asset: fonts/NotoSans-SemiBold.ttf
-        - asset: fonts/NotoSans-Bold.ttf
+        - asset: lib/assets/fonts/NotoSans-Light.ttf
+        - asset: lib/assets/fonts/NotoSans-Regular.ttf
+        - asset: lib/assets/fonts/NotoSans-Medium.ttf
+        - asset: lib/assets/fonts/NotoSans-SemiBold.ttf
+        - asset: lib/assets/fonts/NotoSans-Bold.ttf
     - family: NotoSansKR
       fonts:
-        - asset: fonts/NotoSansKR-Light.otf
-        - asset: fonts/NotoSansKR-Regular.otf
-        - asset: fonts/NotoSansKR-Medium.otf
-        - asset: fonts/NotoSansKR-Bold.otf
-        - asset: fonts/NotoSansKR-Black.otf
+        - asset: lib/assets/fonts/NotoSansKR-Light.otf
+        - asset: lib/assets/fonts/NotoSansKR-Regular.otf
+        - asset: lib/assets/fonts/NotoSansKR-Medium.otf
+        - asset: lib/assets/fonts/NotoSansKR-Bold.otf
+        - asset: lib/assets/fonts/NotoSansKR-Black.otf
   
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

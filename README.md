@@ -18,3 +18,7 @@
 - add font-set
     - NotoSans
     - NotoSansKR
+### 2022.09.21.
+- edit main
+    - add home
+- add palette for customize colors
