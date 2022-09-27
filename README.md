@@ -22,3 +22,6 @@
 - edit main
     - add home
 - add palette for customize colors
+### 2022.09.27.
+- add TabBar
+- add TabBarView
