@@ -22,7 +22,7 @@ class Palette {
   //Mark3: 컬러코드를 그대로 전달하지 않고 정적 상수를 사용해 직관적인 코드를 생성
   static const screensColor = Color(0xfff1f4f8);
   static const normalTextColor = Color(0xffc5cae9);
-  static const highLightColor = Color(0xff9fa8da);
+  static const highLightColor = Color(0xff3949ab);
   static const containersColor = Color(0xff9fa8da);
   static const tabLabelColor = Color(0xFF304FFE);
 }
