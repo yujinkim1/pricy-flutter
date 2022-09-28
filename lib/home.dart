@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'assets/colors/palette.dart';
+import 'models/ListContainer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -40,6 +41,7 @@ class _HomePageState extends State<HomePage> {
                       content: SingleChildScrollView(
                         child: ListBody(
                           children: [
+                            //MARK: Information needs Classifier
                             Text("개발자"),
                             Text("김유진"),
                             Text("박현렬"),
@@ -89,8 +91,51 @@ class _HomePageState extends State<HomePage> {
             //MARK: TabBarView
             TabBarView(
           children: <Widget>[
-            Tab(text: "rice"),
-            Tab(text: "vegitables"),
+            Tab(
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                child: ListView(
+                  scrollDirection: Axis.vertical,
+                  padding: EdgeInsets.zero,
+                  children: [
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                      child: Container(
+                        width: 50,
+                        height: 80,
+                        decoration: BoxDecoration(
+                          color: Palette.containersColor,
+                          borderRadius: BorderRadius.circular(5.0),
+                          shape: BoxShape.rectangle,
+                          boxShadow: [
+                            BoxShadow(
+                                blurRadius: 0,
+                                color: Palette.shadowColor,
+                                offset: Offset(0, 5))
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            //MARK: ListContainer class test
+            Tab(
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                child: ListView(
+                  scrollDirection: Axis.vertical,
+                  padding: EdgeInsets.zero,
+                  children: [
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                      child: CustomBox(),
+                    )
+                  ],
+                ),
+              ),
+            ),
             Tab(text: "Fruits"),
           ],
         ),
