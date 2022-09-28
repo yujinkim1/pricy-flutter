@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
           title: const Text(
             'Pricy',
             style: TextStyle(
-                color: Palette.highLightColor,
+                color: Palette.normalTextColor,
                 fontSize: 30,
                 fontWeight: FontWeight.bold),
           ),
@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
               },
               icon: const Icon(
                 Icons.info_outline,
-                color: Palette.highLightColor,
+                color: Palette.normalTextColor,
                 size: 30,
               ),
             ),
@@ -64,24 +64,23 @@ class _HomePageState extends State<HomePage> {
           elevation: 0,
           //MARK: bottom in tabBar
           bottom: TabBar(
+            isScrollable: true,
+            labelColor: Palette.tabLabelColor,
+            indicatorColor: Palette.tabLabelColor,
+            indicatorWeight: 3,
+            unselectedLabelColor: Palette.normalTextColor,
             tabs: <Widget>[
               Tab(
-                child: Text("식량",
-                    style: TextStyle(
-                      color: Palette.highLightColor,
-                    )),
+                child:
+                    Text("식량", style: TextStyle(fontWeight: FontWeight.w400)),
               ),
               Tab(
-                child: Text("채소",
-                    style: TextStyle(
-                      color: Palette.highLightColor,
-                    )),
+                child:
+                    Text("채소", style: TextStyle(fontWeight: FontWeight.w400)),
               ),
               Tab(
-                child: Text("과일",
-                    style: TextStyle(
-                      color: Palette.highLightColor,
-                    )),
+                child:
+                    Text("과일", style: TextStyle(fontWeight: FontWeight.w400)),
               ),
             ],
           ),
