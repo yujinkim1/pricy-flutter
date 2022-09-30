@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pricy/compare.dart';
+import 'compare.dart';
 import 'assets/colors/palette.dart';
 
 class HomePage extends StatefulWidget {
@@ -89,7 +91,17 @@ class _HomePageState extends State<HomePage> {
             //MARK: TabBarView
             TabBarView(
           children: <Widget>[
-            Tab(text: "rice"),
+            IconButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ComparePage(
+                              title: 'comparePages',
+                            )),
+                  );
+                },
+                icon: Icon(Icons.add)),
             Tab(text: "vegitables"),
             Tab(text: "Fruits"),
           ],

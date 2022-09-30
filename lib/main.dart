@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'home.dart';
+import 'compare.dart';
 import './assets/colors/palette.dart';
 
 void main() {
