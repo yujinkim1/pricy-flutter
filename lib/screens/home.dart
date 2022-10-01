@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'assets/colors/palette.dart';
-import 'models/ListContainer.dart';
+import '../assets/colors/palette.dart';
+import '../widgets/ListContainer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -38,6 +38,7 @@ class _HomePageState extends State<HomePage> {
                   builder: (BuildContext context) {
                     return AlertDialog(
                       title: Text("앱 정보"),
+                      backgroundColor: Palette.screensColor,
                       content: SingleChildScrollView(
                         child: ListBody(
                           children: [
