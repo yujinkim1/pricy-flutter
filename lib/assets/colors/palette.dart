@@ -27,5 +27,5 @@ class Palette {
   //MARK: Shadow Color
   static const shadowColor = Color(0xff9fa8da);
   //MARK: Container Color
-  static const containersColor = Color(0xffe8eaf6);
+  static const containerColor = Color(0xffe8eaf6);
 }

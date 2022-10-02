@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-import 'assets/colors/palette.dart';
-import 'models/ListContainer.dart';
+import 'package:pricy/providers/dailyByData.dart';
+import '../assets/colors/palette.dart';
+import '../widgets/customContainer.dart';
+
+import 'compare.dart';
+import '../providers/dailyByData.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -11,6 +15,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<DailyByData> _dailyByData = [
+    DailyByData('쌀', '5000', 0),
+    DailyByData('콩', '4000', 1),
+    DailyByData('고구마', '8000', 2),
+    DailyByData('감자', '4400', 0),
+    DailyByData('보리', '12000', 1),
+  ];
   @override
   Widget build(BuildContext context) {
     //MARK: DefaultTabController
@@ -38,6 +49,7 @@ class _HomePageState extends State<HomePage> {
                   builder: (BuildContext context) {
                     return AlertDialog(
                       title: Text("앱 정보"),
+                      backgroundColor: Palette.screensColor,
                       content: SingleChildScrollView(
                         child: ListBody(
                           children: [
@@ -101,7 +113,16 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                      child: CustomBox(),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      ComparePage(title: 'ComparePage')));
+                        },
+                        child: CustomBox(),
+                      ),
                     )
                   ],
                 ),
@@ -122,7 +143,30 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            Tab(text: "Fruits"),
+            Tab(
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                child: ListView(
+                  scrollDirection: Axis.vertical,
+                  padding: EdgeInsets.zero,
+                  children: [
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      ComparePage(title: 'ComparePage')));
+                        },
+                        child: CustomBox(),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
