@@ -56,6 +56,10 @@ class ChartBox extends StatelessWidget {
             BoxShadow(
                 blurRadius: 0, color: Palette.shadowColor, offset: Offset(0, 5))
           ]),
+      child: Column(children: [
+        Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
+        Container()
+      ]),
     );
   }
 }
