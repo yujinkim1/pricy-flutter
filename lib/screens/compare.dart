@@ -46,6 +46,7 @@ class _Compare extends State<ComparePage> {
               children: [ChartBox()],
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
@@ -80,6 +81,28 @@ class _Compare extends State<ComparePage> {
                       FilteringTextInputFormatter.digitsOnly
                     ],
                   ),
+                )
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  height: MediaQuery.of(context).size.height * 0.1,
+                  alignment: AlignmentDirectional(0, 0),
+                  decoration: BoxDecoration(
+                      color: Palette.containerColor,
+                      borderRadius: BorderRadius.circular(5.0),
+                      shape: BoxShape.rectangle,
+                      boxShadow: [
+                        BoxShadow(
+                            blurRadius: 0,
+                            color: Palette.shadowColor,
+                            offset: Offset(0, 5))
+                      ]),
+                  child: Text(inputText),
                 )
               ],
             )
