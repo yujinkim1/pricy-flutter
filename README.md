@@ -1,34 +1,113 @@
 ## 🧑🏻‍💻Team members
-- Hyunryeol Park | [[github]](https://github.com/devpark435)
-- Yujin kim | [[github]](https://github.com/yujinkim1)
-- Jinwoo Lee | [[github]](https://github.com/yeeZinu)
+- hyunryeol Park | [[github]](https://github.com/devpark435)
+- yujin kim | [[github]](https://github.com/yujinkim1)
+- jinwoo Lee | [[github]](https://github.com/yeeZinu)
 
-## 🔨Dev Environment
-- VScodeIDE
+## 🔨Dev environment
+- Visual Studio Code
 - Flutter3
-- Dart Language
+- Dart
+- Prettier
 
-## ✨Updates
-### 2022.09.17.
-- upgrading flutter 3.3
-    - `flutter upgrading`
-### 2022.09.20.
-- modify repo path
-    - `pricy-flutter-app/`
-- add font-set
-    - NotoSans
-    - NotoSansKR
-### 2022.09.21.
-- edit main
-    - add home
-- add palette for customize colors
-### 2022.09.27.
-- add TabBar
-- add TabBarView
-### 2022.09.28.
-- add ListView
-- add ListContainer Model
-### 2022.09.30.
-- re-structed file path
-    - `lib/`
-    - add folder
+## ✨Update history
+
+<details>
+<summary>2022.09.17.</summary>
+<div markdown="1">
+
+    - upgrading flutter 3.3
+        - `flutter upgrading`
+
+</div>
+</details>
+<details>
+<summary>2022.09.20.</summary>
+<div markdown="1">
+
+    - modify repo path
+        - `pricy-flutter-app/`
+    - upgrading dart 2
+    - add font-set
+        - NotoSans
+        - NotoSansKR
+
+</div>
+</details>
+<details>
+<summary>2022.09.21.</summary>
+<div markdown="1">
+
+    - edit main screen
+        - add home screen
+    - add palette for customize colors
+
+</div>
+</details>
+<details>
+<summary>2022.09.27.</summary>
+<div markdown="1">
+
+    - add tab bar
+    - add controller
+    - add tab bar view
+
+</div>
+</details>
+<details>
+<summary>2022.09.28.</summary>
+<div markdown="1">
+
+    - edit home screen
+        - add ListView
+        - add custom widget
+
+</div>
+</details>
+<details>
+<summary>2022.09.30.</summary>
+<div markdown="1">
+
+    - re-structed file path
+        - `lib/...`
+        - add folders
+            - `/models`
+            - `/providers`
+            - `/screens`
+            - `/utilities`
+            - `/widgets`
+
+</div>
+</details>
+<details>
+<summary>2022.10.04.</summary>
+<div markdown="1">
+
+    - add screen navigation
+    - add compare screen
+        - add chart
+        - add number pad keyboard
+
+</div>
+</details>
+<details>
+<summary>2022.10.6.</summary>
+<div markdown="1">
+
+    - add apis
+    - add certificate
+        - add key
+        - add id
+
+</div>
+</details>
+<details>
+<summary>2022.10.8.</summary>
+<div markdown="1">
+
+    - delete unnecassary files
+        - .dart_tool
+        - /build
+        - .DS_Store
+
+</div>
+</details>
