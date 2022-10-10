@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "/assets/colors/palette.dart";
+import '../screens/compare.dart';
 
 //MARK: 코드 간결화를 위한 컨테이너 클래스화
 class CustomBox extends StatelessWidget {
@@ -16,6 +17,14 @@ class CustomBox extends StatelessWidget {
             BoxShadow(
                 blurRadius: 0, color: Palette.shadowColor, offset: Offset(0, 5))
           ]),
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ComparePage(title: 'ComparePage')));
+        },
+      ),
     );
   }
 }
@@ -56,6 +65,10 @@ class ChartBox extends StatelessWidget {
             BoxShadow(
                 blurRadius: 0, color: Palette.shadowColor, offset: Offset(0, 5))
           ]),
+      child: Column(children: [
+        Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
+        Container()
+      ]),
     );
   }
 }
