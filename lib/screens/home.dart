@@ -150,6 +150,7 @@ class _HomePageState extends State<HomePage> {
                                           CrossAxisAlignment.center,
                                       children: [
                                         Container(
+                                          //MARK: 데이터를 표현할 방법을 찾아야함
                                           child: Text(
                                             items[index]
                                                 .itemName
