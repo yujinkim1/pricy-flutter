@@ -1,45 +1,68 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:flutter/material.dart';
 import '../utilities/kamis.dart';
 
 //MARK: GET
-Future<DailyByData> fetchPost() async {
+Future<DailyByData> fetchDaily() async {
   final response = await http.get(dailyByUrl);
   //MARK: isResponseStatusCorrect
   if (response.statusCode == 200) {
-    return DailyByData.fromJson(json.decode(response.body));
+    final decodeData = utf8.decode(response.bodyBytes);
+    return DailyByData.fromJson(jsonDecode(decodeData));
   } else {
-    //MARK: 이전 Response 데이터 표기
-    return DailyByData.fromJson(json.decode(response.body));
+    //MARK: isResponseStatusIncorrect
+    throw Exception("데이터를 불러오는데 실패했습니다.");
   }
 }
 
 class DailyByData {
-  final item_name;
-  final category_name;
-  final latest_date;
-  final unit;
-  final dpr1;
-  final value;
-  final direction;
+  final String condition;
+  final String errorcode;
+  final List<Price> price;
 
-  DailyByData(
-      {this.item_name,
-      this.category_name,
-      this.latest_date,
-      this.unit,
-      this.dpr1,
-      this.value,
-      this.direction});
+  DailyByData({
+    required this.condition,
+    required this.errorcode,
+    required this.price,
+  });
 
   factory DailyByData.fromJson(Map<String, dynamic> json) {
+    var list = json['price'] as List;
+    print(list.runtimeType);
+    List<Price> priceList = list.map((i) => Price.fromJson(i)).toList();
+    print(priceList);
     return DailyByData(
-        item_name: json['item_name'],
-        category_name: json['category_name'],
-        unit: json['unit'],
-        dpr1: json['dpr1'],
-        value: json['value'],
-        direction: json['direction']);
+        condition: json['condition'],
+        errorcode: json['errorcode'],
+        price: priceList);
+  }
+}
+
+class Price {
+  final String itemName;
+  final String categoryName;
+  final String lastestDay;
+  final String unit;
+  final String dpr1;
+  final String direction;
+
+  Price({
+    required this.itemName,
+    required this.categoryName,
+    required this.lastestDay,
+    required this.unit,
+    required this.dpr1,
+    required this.direction,
+  });
+
+  factory Price.fromJson(Map<String, dynamic> json) {
+    return Price(
+      itemName: json['item_name'],
+      categoryName: json['category_name'],
+      lastestDay: json['lastest_day'],
+      unit: json['unit'],
+      dpr1: json['dpr1'],
+      direction: json['direction'],
+    );
   }
 }

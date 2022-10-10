@@ -6,7 +6,7 @@ void main() {
   runApp(const MyApp());
 }
 
-//Mark1: 실제 모든 스크린을 표현하는 위젯
+//MARK: 실제 모든 스크린을 표현하는 위젯
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
@@ -16,9 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           scaffoldBackgroundColor: Palette.screensColor,
           fontFamily: 'NotoSans'),
-      home: const HomePage(
-        title: 'This is Home',
-      ),
+      home: const HomePage(),
     );
   }
 }
