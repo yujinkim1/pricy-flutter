@@ -1,21 +1,28 @@
+import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:pricy/providers/dailyByData.dart';
 import '../assets/colors/palette.dart';
 import '../widgets/customContainer.dart';
-
 import 'compare.dart';
 import '../providers/dailyByData.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key, required this.title});
-  final String title;
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  
+  late Future<DailyByData> futureDaily;
+
+  //MARK: callAPI
+  @override
+  void initState() {
+    super.initState();
+    futureDaily = fetchDaily();
+  }
+
   @override
   Widget build(BuildContext context) {
     //MARK: DefaultTabController
@@ -42,18 +49,37 @@ class _HomePageState extends State<HomePage> {
                   barrierDismissible: true,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      title: Text("앱 정보"),
+                      title: const Text("앱 정보",
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold)),
                       backgroundColor: Palette.screensColor,
                       content: SingleChildScrollView(
                         child: ListBody(
-                          children: [
+                          children: const [
                             //MARK: Information needs Classifier
-                            Text("개발자"),
-                            Text("김유진"),
-                            Text("박현렬"),
-                            Text("이진우"),
-                            Text("API 제공처"),
-                            Text("KAMIS")
+                            Text("개발자",
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold)),
+                            Text("1. 김유진, Sungkonghoe University",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.normal)),
+                            Text("2. 박현렬, Sungkonghoe University",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.normal)),
+                            Text("3. 이진우, Sungkonghoe University",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.normal)),
+                            Text("API 제공처",
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold)),
+                            Text("KAMIS",
+                                style: TextStyle(
+                                    fontSize: 30,
+                                    color: Palette.normalTextColor,
+                                    fontWeight: FontWeight.bold))
                           ],
                         ),
                       ),
@@ -71,7 +97,7 @@ class _HomePageState extends State<HomePage> {
           centerTitle: false,
           elevation: 0,
           //MARK: bottom in tabBar
-          bottom: TabBar(
+          bottom: const TabBar(
             isScrollable: true,
             labelColor: Palette.tabLabelColor,
             indicatorColor: Palette.tabLabelColor,
@@ -100,37 +126,58 @@ class _HomePageState extends State<HomePage> {
             //MARK: Using Class ListContainer
             Tab(
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-                child: ListView(
-                  scrollDirection: Axis.vertical,
-                  padding: EdgeInsets.zero,
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      ComparePage(title: 'ComparePage')));
-                        },
-                        child: CustomBox(),
-                      ),
-                    )
-                  ],
-                ),
+                padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                child: FutureBuilder<DailyByData>(
+                    future: futureDaily,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        var items = jsonDecode(snapshot.data.toString());
+                        return ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          padding: EdgeInsets.zero,
+                          itemCount: items == null ? 0 : items.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Card(
+                                elevation: 5,
+                                margin: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 6),
+                                child: Container(
+                                    padding: const EdgeInsets.all(8),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          //MARK: 데이터를 표현할 방법을 찾아야함
+                                          child: Text(
+                                            items[index]
+                                                .itemName
+                                                ?.cast<String>(),
+                                          ),
+                                        )
+                                      ],
+                                    )));
+                          },
+                        );
+                      } else if (snapshot.hasError) {
+                        return Text('${snapshot.error}');
+                      }
+                      return const CircularProgressIndicator();
+                    }),
               ),
             ),
             Tab(
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                 child: ListView(
                   scrollDirection: Axis.vertical,
                   padding: EdgeInsets.zero,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                       child: CustomBox(),
                     )
                   ],
@@ -139,20 +186,21 @@ class _HomePageState extends State<HomePage> {
             ),
             Tab(
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                 child: ListView(
                   scrollDirection: Axis.vertical,
                   padding: EdgeInsets.zero,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                       child: GestureDetector(
                         onTap: () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      ComparePage(title: 'ComparePage')));
+                                      const ComparePage(title: 'ComparePage')));
                         },
                         child: CustomBox(),
                       ),
@@ -167,3 +215,23 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+/*
+
+children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => ComparePage(
+                                              title: 'ComparePage')));
+                                },
+                              ),
+                            ),
+                          ],
+
+*/

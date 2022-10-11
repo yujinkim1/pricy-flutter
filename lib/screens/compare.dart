@@ -15,14 +15,6 @@ class ComparePage extends StatefulWidget {
 
 class _Compare extends State<ComparePage> {
   String inputText = '';
-  // List<DailyByData> _dailyByData = [
-  //   DailyByData('1년 전', '38', 2),
-  //   DailyByData('1개월전', '28', 0),
-  //   DailyByData('2주일전', '44', 1),
-  //   DailyByData('1주일전', '46', 1),
-  //   DailyByData('1일전', '40', 0),
-  //   DailyByData('당일', '39', 0)
-  // ];
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
