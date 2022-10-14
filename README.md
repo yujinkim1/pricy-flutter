@@ -111,3 +111,15 @@
 
 </div>
 </details>
+<details>
+<summary>2022.10.13.</summary>
+<div markdown="1">
+
+    - fixed type_error
+    - add apis
+    - present datas
+    - add utilities/styles
+    - edit screen
+
+</div>
+</details>
