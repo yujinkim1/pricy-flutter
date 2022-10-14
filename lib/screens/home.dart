@@ -1,10 +1,9 @@
-import 'dart:async';
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import '../assets/colors/palette.dart';
 import '../widgets/customContainer.dart';
 import 'compare.dart';
 import '../providers/dailyByData.dart';
+import '../utilities/styles.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,9 +13,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late Future<DailyByData> futureDaily;
+  late Future<PriceList> futureDaily;
 
-  //MARK: callAPI
+  //MARK: -API CALL
   @override
   void initState() {
     super.initState();
@@ -45,7 +44,7 @@ class _HomePageState extends State<HomePage> {
                 //MARK: Button isonPressed ? PopUpDialog
                 showDialog(
                   context: context,
-                  // -Dialog 바깥 영역을 터치 시 화면 닫기 여부
+                  //MARK: Dialog 바깥 영역을 터치 시 화면 닫기 여부
                   barrierDismissible: true,
                   builder: (BuildContext context) {
                     return AlertDialog(
@@ -57,18 +56,18 @@ class _HomePageState extends State<HomePage> {
                         child: ListBody(
                           children: const [
                             //MARK: Information needs Classifier
-                            Text("개발자",
+                            Text("Sungkonghoe University",
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold)),
-                            Text("1. 김유진, Sungkonghoe University",
+                            Text("김유진",
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.normal)),
-                            Text("2. 박현렬, Sungkonghoe University",
+                            Text("박현렬",
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.normal)),
-                            Text("3. 이진우, Sungkonghoe University",
+                            Text("이진우",
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.normal)),
@@ -99,22 +98,25 @@ class _HomePageState extends State<HomePage> {
           //MARK: bottom in tabBar
           bottom: const TabBar(
             isScrollable: true,
-            labelColor: Palette.tabLabelColor,
-            indicatorColor: Palette.tabLabelColor,
-            indicatorWeight: 3,
+            labelColor: Palette.highLightColor,
+            indicatorColor: Palette.highLightColor,
+            indicatorWeight: 2,
+            labelStyle: TextStyle(
+                color: Palette.tabLabelColor,
+                fontSize: 20,
+                fontWeight: FontWeight.bold),
+            unselectedLabelStyle:
+                TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
             unselectedLabelColor: Palette.normalTextColor,
             tabs: <Widget>[
               Tab(
-                child:
-                    Text("식량", style: TextStyle(fontWeight: FontWeight.w400)),
+                child: Text("식량작물"),
               ),
               Tab(
-                child:
-                    Text("채소", style: TextStyle(fontWeight: FontWeight.w400)),
+                child: Text("채소류"),
               ),
               Tab(
-                child:
-                    Text("과일", style: TextStyle(fontWeight: FontWeight.w400)),
+                child: Text("과일류"),
               ),
             ],
           ),
@@ -127,38 +129,56 @@ class _HomePageState extends State<HomePage> {
             Tab(
               child: Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-                child: FutureBuilder<DailyByData>(
+                child: new FutureBuilder<PriceList>(
                     future: futureDaily,
-                    builder: (context, snapshot) {
+                    builder: (BuildContext context, snapshot) {
                       if (snapshot.hasData) {
-                        var items = jsonDecode(snapshot.data.toString());
+                        var items = snapshot.data!.price;
                         return ListView.builder(
                           scrollDirection: Axis.vertical,
                           padding: EdgeInsets.zero,
                           itemCount: items == null ? 0 : items.length,
                           itemBuilder: (BuildContext context, int index) {
-                            return Card(
-                                elevation: 5,
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 6),
-                                child: Container(
-                                    padding: const EdgeInsets.all(8),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          //MARK: 데이터를 표현할 방법을 찾아야함
-                                          child: Text(
-                                            items[index]
-                                                .itemName
-                                                ?.cast<String>(),
+                            var datas = items![index];
+                            return SizedBox(
+                                height: 80,
+                                child: Card(
+                                    shadowColor: Palette.shadowColor,
+                                    elevation: 3,
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 7),
+                                    child: GestureDetector(
+                                        child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                          Container(
+                                            margin: EdgeInsets.all(10),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(datas.itemName,
+                                                    style: Styles.itemNameText),
+                                                Text(datas.unit,
+                                                    style: Styles.unitText),
+                                              ],
+                                            ),
                                           ),
-                                        )
-                                      ],
-                                    )));
+                                          Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.end,
+                                              children: [
+                                                Container(
+                                                  margin: EdgeInsets.all(10),
+                                                  child: Text(datas.dpr1 + "원",
+                                                      style: Styles.dprText),
+                                                )
+                                              ])
+                                        ]))));
                           },
                         );
                       } else if (snapshot.hasError) {
@@ -215,23 +235,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-/*
-
-children: [
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => ComparePage(
-                                              title: 'ComparePage')));
-                                },
-                              ),
-                            ),
-                          ],
-
-*/

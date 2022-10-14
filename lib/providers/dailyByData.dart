@@ -1,50 +1,59 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../utilities/kamis.dart';
+import 'dart:async' show Future;
 
 //MARK: GET
-Future<DailyByData> fetchDaily() async {
+// Future<String> _loadPricyAsset() async {
+//   return await rootBundle.loadString('PriceList.json');
+// }
+
+Future<PriceList> fetchDaily() async {
+  // String response = await _loadPricyAsset();
   final response = await http.get(dailyByUrl);
+
   //MARK: isResponseStatusCorrect
-  if (response.statusCode == 200) {
-    final decodeData = utf8.decode(response.bodyBytes);
-    return DailyByData.fromJson(jsonDecode(decodeData));
-  } else {
-    //MARK: isResponseStatusIncorrect
-    throw Exception("데이터를 불러오는데 실패했습니다.");
-  }
+  final jsonResponse = json.decode(response.body);
+  return new PriceList.fromJson(jsonResponse);
 }
 
-class DailyByData {
-  final String condition;
-  final String errorcode;
-  final List<Price> price;
+class PriceList {
+  List<Price>? price;
 
-  DailyByData({
-    required this.condition,
-    required this.errorcode,
-    required this.price,
-  });
+  PriceList({this.price});
 
-  factory DailyByData.fromJson(Map<String, dynamic> json) {
-    var list = json['price'] as List;
-    print(list.runtimeType);
-    List<Price> priceList = list.map((i) => Price.fromJson(i)).toList();
-    print(priceList);
-    return DailyByData(
-        condition: json['condition'],
-        errorcode: json['errorcode'],
-        price: priceList);
+  PriceList.fromJson(Map<String, dynamic> json) {
+    if (json['price'] != null) {
+      price = <Price>[];
+      // List price = [];
+      json['price'].forEach((v) {
+        price!.add(Price.fromJson(v));
+      });
+    }
   }
+
+  Map<String, dynamic> toJson(Type priceList) {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.price != null) {
+      data['price'] = this.price!.map((v) => v.toJson()).toList();
+    } else if (this.price == null) {
+      var emptyValue = 0;
+      data['price'] =
+          this.price!.map((emptyValue) => emptyValue.toJson()).toList();
+    }
+    return data;
+  }
+
+  // String PriceListToJson(List<Price> price) =>
+  //     jsonEncode(price.map((v) => v.toJson()).toList().toString());
 }
 
 class Price {
-  final String itemName;
-  final String categoryName;
-  final String lastestDay;
-  final String unit;
-  final String dpr1;
-  final String direction;
+  String itemName;
+  String categoryName;
+  String lastestDay;
+  String unit;
+  String dpr1;
 
   Price({
     required this.itemName,
@@ -52,17 +61,24 @@ class Price {
     required this.lastestDay,
     required this.unit,
     required this.dpr1,
-    required this.direction,
   });
 
   factory Price.fromJson(Map<String, dynamic> json) {
     return Price(
-      itemName: json['item_name'],
-      categoryName: json['category_name'],
-      lastestDay: json['lastest_day'],
-      unit: json['unit'],
-      dpr1: json['dpr1'],
-      direction: json['direction'],
-    );
+        categoryName: json["category_name"],
+        lastestDay: json["lastest_day"],
+        itemName: json["item_name"],
+        unit: json["unit"],
+        dpr1: json["dpr1"]);
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['category_name'] = categoryName;
+    data['lastest_day'] = lastestDay;
+    data['item_name'] = itemName;
+    data['unit'] = unit;
+    data['dpr1'] = dpr1;
+    return data;
   }
 }
