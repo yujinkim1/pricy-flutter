@@ -148,37 +148,51 @@ class _HomePageState extends State<HomePage> {
                                     margin: const EdgeInsets.symmetric(
                                         horizontal: 10, vertical: 7),
                                     child: GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ComparePage(
+                                                          title: 'ComparePage',
+                                                          items: datas)));
+                                        },
                                         child: Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,
                                             children: [
-                                          Container(
-                                            margin: EdgeInsets.all(10),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(datas.itemName,
-                                                    style: Styles.itemNameText),
-                                                Text(datas.unit,
-                                                    style: Styles.unitText),
-                                              ],
-                                            ),
-                                          ),
-                                          Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              children: [
-                                                Container(
-                                                  margin: EdgeInsets.all(10),
-                                                  child: Text(datas.dpr1 + "원",
-                                                      style: Styles.dprText),
-                                                )
-                                              ])
-                                        ]))));
+                                              Container(
+                                                margin: EdgeInsets.all(10),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(datas.itemName,
+                                                        style: Styles
+                                                            .itemNameText),
+                                                    Text(datas.unit,
+                                                        style: Styles.unitText),
+                                                  ],
+                                                ),
+                                              ),
+                                              Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.end,
+                                                  children: [
+                                                    Container(
+                                                      margin:
+                                                          EdgeInsets.all(10),
+                                                      child: Text(
+                                                          datas.dpr1 + "원",
+                                                          style:
+                                                              Styles.dprText),
+                                                    )
+                                                  ])
+                                            ]))));
                           },
                         );
                       } else if (snapshot.hasError) {
@@ -215,13 +229,13 @@ class _HomePageState extends State<HomePage> {
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                       child: GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const ComparePage(title: 'ComparePage')));
-                        },
+                        // onTap: () {
+                        //   Navigator.push(
+                        //       context,
+                        //       MaterialPageRoute(
+                        //           builder: (context) =>
+                        //               const ComparePage(title: 'ComparePage')));
+                        // },
                         child: CustomBox(),
                       ),
                     )

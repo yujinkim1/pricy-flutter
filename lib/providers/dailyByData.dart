@@ -54,6 +54,9 @@ class Price {
   String lastestDay;
   String unit;
   String dpr1;
+  String dpr2;
+  String dpr3;
+  String dpr4;
 
   Price({
     required this.itemName,
@@ -61,6 +64,9 @@ class Price {
     required this.lastestDay,
     required this.unit,
     required this.dpr1,
+    required this.dpr2,
+    required this.dpr3,
+    required this.dpr4,
   });
 
   factory Price.fromJson(Map<String, dynamic> json) {
@@ -69,7 +75,10 @@ class Price {
         lastestDay: json["lastest_day"],
         itemName: json["item_name"],
         unit: json["unit"],
-        dpr1: json["dpr1"]);
+        dpr1: json["dpr1"],
+        dpr2: json["dpr2"],
+        dpr3: json["dpr3"].toString(),
+        dpr4: json["dpr4"].toString());
   }
 
   Map<String, dynamic> toJson() {
@@ -79,6 +88,9 @@ class Price {
     data['item_name'] = itemName;
     data['unit'] = unit;
     data['dpr1'] = dpr1;
+    data['dpr2'] = dpr2;
+    data['dpr3'] = dpr3;
+    data['dpr4'] = dpr4;
     return data;
   }
 }
