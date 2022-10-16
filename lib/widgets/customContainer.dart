@@ -52,7 +52,7 @@ class ItemBox extends StatelessWidget {
 }
 
 //price takebuy&dontbuy box container
-class takeBuyBox extends StatelessWidget {
+class TakeBuyBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -69,14 +69,14 @@ class takeBuyBox extends StatelessWidget {
                 blurRadius: 0, color: Palette.shadowColor, offset: Offset(0, 5))
           ]),
       child: Text(
-        "어서 구매하도록!",
+        "저렴해요.",
         style: Styles.dprText,
       ),
     );
   }
 }
 
-class dontBuyBox extends StatelessWidget {
+class DontBuyBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -85,7 +85,7 @@ class dontBuyBox extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.9,
       height: MediaQuery.of(context).size.height * 0.1,
       decoration: BoxDecoration(
-          color: Palette.containerColor,
+          color: Palette.upDprColor,
           borderRadius: BorderRadius.circular(5.0),
           shape: BoxShape.rectangle,
           boxShadow: [
@@ -93,7 +93,7 @@ class dontBuyBox extends StatelessWidget {
                 blurRadius: 0, color: Palette.shadowColor, offset: Offset(0, 5))
           ]),
       child: Text(
-        "이거 사는 흑우 없제?",
+        "비싸요",
         style: Styles.dprText,
       ),
     );

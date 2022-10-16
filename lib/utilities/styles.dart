@@ -10,7 +10,7 @@ class Styles {
       color: Palette.elementColor, fontSize: 15, fontWeight: FontWeight.w300);
   //MARK: -dpr1
   static const TextStyle dprText = TextStyle(
-      color: Palette.elementColor, fontSize: 22, fontWeight: FontWeight.bold);
+      color: Palette.elementColor, fontSize: 20, fontWeight: FontWeight.bold);
   static const TextStyle dprUpText = TextStyle(
       color: Color.fromARGB(255, 222, 106, 145),
       fontSize: 22,

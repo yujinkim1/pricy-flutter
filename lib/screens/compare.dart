@@ -165,7 +165,7 @@ class _Compare extends State<ComparePage> {
                         obscureText: false,
                         decoration: InputDecoration(
                           border: InputBorder.none,
-                          labelText: '금액 입력하기',
+                          labelText: '원하는 금액을 입력하세요',
                         ),
                         keyboardType: TextInputType.number,
                         inputFormatters: <TextInputFormatter>[
@@ -194,6 +194,7 @@ class _Compare extends State<ComparePage> {
                                 offset: Offset(0, 5))
                           ]),
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
                             "금일 가격 : ${theDay} 원",
@@ -216,12 +217,12 @@ class _Compare extends State<ComparePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     if (result > 0)
-                      takeBuyBox()
+                      TakeBuyBox()
                     else
                       // Container(
                       //   color: Palette.highLightColor,
                       // )
-                      dontBuyBox()
+                      DontBuyBox()
                   ],
                 )
               ],

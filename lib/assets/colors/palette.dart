@@ -30,4 +30,6 @@ class Palette {
   static const containerColor = Color(0xffe8eaf6);
   //MARK: Element Color
   static const elementColor = Color(0xff424949);
+
+  static const upDprColor = Color(0xffFF6A91);
 }

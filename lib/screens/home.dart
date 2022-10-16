@@ -113,10 +113,10 @@ class _HomePageState extends State<HomePage> {
                 child: Text("식량작물"),
               ),
               Tab(
-                child: Text("채소류"),
+                child: Text("축산물"),
               ),
               Tab(
-                child: Text("과일류"),
+                child: Text("수산물"),
               ),
             ],
           ),
