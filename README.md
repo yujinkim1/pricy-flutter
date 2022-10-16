@@ -123,3 +123,14 @@
 
 </div>
 </details>
+<details>
+<summary>2022.10.16.</summary>
+<div markdown="1">
+
+    - add chart-view
+    - add input-field-box
+    - present margin value
+    - edit screen styles
+
+</div>
+</details>
