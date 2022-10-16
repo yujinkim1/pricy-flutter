@@ -140,6 +140,10 @@ class _HomePageState extends State<HomePage> {
                           itemCount: items == null ? 0 : items.length,
                           itemBuilder: (BuildContext context, int index) {
                             var datas = items![index];
+                            late int thedayPrice =
+                                int.parse('${datas.dpr1.replaceAll(",", "")}');
+                            late int agoPrice =
+                                int.parse('${datas.dpr2.replaceAll(",", "")}');
                             return SizedBox(
                                 height: 80,
                                 child: Card(
@@ -183,14 +187,26 @@ class _HomePageState extends State<HomePage> {
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.end,
                                                   children: [
-                                                    Container(
-                                                      margin:
-                                                          EdgeInsets.all(10),
-                                                      child: Text(
+                                                    if (thedayPrice > agoPrice)
+                                                      Container(
+                                                        margin:
+                                                            EdgeInsets.all(10),
+                                                        child: Text(
                                                           datas.dpr1 + "원",
                                                           style:
-                                                              Styles.dprText),
-                                                    )
+                                                              Styles.dprUpText,
+                                                        ),
+                                                      )
+                                                    else
+                                                      Container(
+                                                        margin:
+                                                            EdgeInsets.all(10),
+                                                        child: Text(
+                                                          datas.dpr1 + "원",
+                                                          style: Styles
+                                                              .dprDownText,
+                                                        ),
+                                                      )
                                                   ])
                                             ]))));
                           },
