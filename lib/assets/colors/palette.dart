@@ -25,11 +25,18 @@ class Palette {
   static const highLightColor = Color(0xff3949ab);
   static const tabLabelColor = Color(0xFF304FFE);
   //MARK: Shadow Color
-  static const shadowColor = Color(0xff9fa8da);
+  static const shadowColor = Color(0xffc5cae9);
   //MARK: Container Color
-  static const containerColor = Color(0xffe8eaf6);
+  static const containerColor = Color(0xffffffff);
   //MARK: Element Color
   static const elementColor = Color(0xff424949);
+  //MARK: White Label Color
+  static const whiteLabelColor = Color(0xffffffff);
 
-  static const upDprColor = Color(0xffFF6A91);
+  //MARK: Increase Color
+  static const increaseShadowColor = Color(0xffff89bc);
+  static const increaseColor = Color(0xffe53935);
+  //MARK: Decrease Color
+  static const decreaseShadowColor = Color(0xff7986cb);
+  static const decreaseColor = Color(0xff3f51b5);
 }

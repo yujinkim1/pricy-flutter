@@ -3,11 +3,6 @@ import 'dart:convert';
 import '../utilities/kamis.dart';
 import 'dart:async' show Future;
 
-//MARK: GET
-// Future<String> _loadPricyAsset() async {
-//   return await rootBundle.loadString('PriceList.json');
-// }
-
 Future<PriceList> fetchDaily() async {
   // String response = await _loadPricyAsset();
   final response = await http.get(dailyByUrl);

@@ -18,6 +18,10 @@ class Styles {
   static const TextStyle dprDownText = TextStyle(
       color: Color.fromARGB(255, 61, 174, 255),
       fontSize: 22,
+      fontWeight: FontWeight.w600);
+  static const TextStyle resultText = TextStyle(
+      color: Palette.whiteLabelColor,
+      fontSize: 22,
       fontWeight: FontWeight.bold);
   //MARK: -AlertDialog
   static const TextStyle appInfoText = TextStyle(

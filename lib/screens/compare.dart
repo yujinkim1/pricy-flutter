@@ -105,6 +105,11 @@ class _Compare extends State<ComparePage> {
                         child: Column(children: [
                           Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
                           Container(
+                            decoration: BoxDecoration(
+                              color: Palette.containerColor,
+                              borderRadius: BorderRadius.circular(5.0),
+                              shape: BoxShape.rectangle,
+                            ),
                             child: SfCartesianChart(
                                 primaryXAxis: CategoryAxis(),
                                 primaryYAxis: NumericAxis(
@@ -178,49 +183,50 @@ class _Compare extends State<ComparePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      height: MediaQuery.of(context).size.height * 0.1,
-                      alignment: AlignmentDirectional(0, 0),
-                      decoration: BoxDecoration(
-                          color: Palette.containerColor,
-                          borderRadius: BorderRadius.circular(5.0),
-                          shape: BoxShape.rectangle,
-                          boxShadow: [
-                            BoxShadow(
-                                blurRadius: 0,
-                                color: Palette.shadowColor,
-                                offset: Offset(0, 5))
-                          ]),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            "금일 가격 : ${theDay} 원",
-                            style: Styles.dprText,
+                        margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                        width: MediaQuery.of(context).size.width * 0.9,
+                        height: MediaQuery.of(context).size.height * 0.1,
+                        alignment: AlignmentDirectional(-1, 0),
+                        decoration: BoxDecoration(
+                            color: Palette.containerColor,
+                            borderRadius: BorderRadius.circular(5.0),
+                            shape: BoxShape.rectangle,
+                            boxShadow: [
+                              BoxShadow(
+                                  blurRadius: 0,
+                                  color: Palette.shadowColor,
+                                  offset: Offset(0, 5))
+                            ]),
+                        child: Padding(
+                          padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "금일 가격 : ${theDay} 원",
+                                style: Styles.dprText,
+                              ),
+                              Text(
+                                "입력 가격 : ${inputText} 원",
+                                style: Styles.dprText,
+                              ),
+                              Text(
+                                "차액 : ${result} 원",
+                                style: Styles.dprText,
+                              ),
+                            ],
                           ),
-                          Text(
-                            "입력 가격 : ${inputText} 원",
-                            style: Styles.dprText,
-                          ),
-                          Text(
-                            "차액 : ${result} 원",
-                            style: Styles.dprText,
-                          ),
-                        ],
-                      ),
-                    )
+                        ))
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    if (result > 0)
+                    if (result == dayPrice)
+                      ItemBox()
+                    else if (result > 0)
                       TakeBuyBox()
                     else
-                      // Container(
-                      //   color: Palette.highLightColor,
-                      // )
                       DontBuyBox()
                   ],
                 )

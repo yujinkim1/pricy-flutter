@@ -61,7 +61,7 @@ class TakeBuyBox extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.9,
       height: MediaQuery.of(context).size.height * 0.1,
       decoration: BoxDecoration(
-          color: Palette.containerColor,
+          color: Palette.decreaseColor,
           borderRadius: BorderRadius.circular(5.0),
           shape: BoxShape.rectangle,
           boxShadow: [
@@ -69,8 +69,8 @@ class TakeBuyBox extends StatelessWidget {
                 blurRadius: 0, color: Palette.shadowColor, offset: Offset(0, 5))
           ]),
       child: Text(
-        "저렴해요.",
-        style: Styles.dprText,
+        "금일 가격보다 저렴해요",
+        style: Styles.resultText,
       ),
     );
   }
@@ -85,16 +85,16 @@ class DontBuyBox extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.9,
       height: MediaQuery.of(context).size.height * 0.1,
       decoration: BoxDecoration(
-          color: Palette.upDprColor,
-          borderRadius: BorderRadius.circular(5.0),
+          color: Palette.increaseColor,
+          borderRadius: BorderRadius.circular(10.0),
           shape: BoxShape.rectangle,
           boxShadow: [
             BoxShadow(
                 blurRadius: 0, color: Palette.shadowColor, offset: Offset(0, 5))
           ]),
       child: Text(
-        "비싸요",
-        style: Styles.dprText,
+        "금일 가격보다 비싸요",
+        style: Styles.resultText,
       ),
     );
   }

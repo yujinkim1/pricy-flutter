@@ -58,22 +58,22 @@ class _HomePageState extends State<HomePage> {
                             //MARK: Information needs Classifier
                             Text("Sungkonghoe University",
                                 style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold)),
+                                    fontSize: 18, fontWeight: FontWeight.bold)),
                             Text("김유진",
                                 style: TextStyle(
-                                    fontSize: 15,
+                                    fontSize: 20,
                                     fontWeight: FontWeight.normal)),
                             Text("박현렬",
                                 style: TextStyle(
-                                    fontSize: 15,
+                                    fontSize: 20,
                                     fontWeight: FontWeight.normal)),
                             Text("이진우",
                                 style: TextStyle(
-                                    fontSize: 15,
+                                    fontSize: 20,
                                     fontWeight: FontWeight.normal)),
                             Text("API 제공처",
                                 style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold)),
+                                    fontSize: 18, fontWeight: FontWeight.bold)),
                             Text("KAMIS",
                                 style: TextStyle(
                                     fontSize: 30,
