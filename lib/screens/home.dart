@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     //MARK: DefaultTabController
     return DefaultTabController(
-      length: 3,
+      length: 5,
       child: Scaffold(
         //MARK: Custom AppBar
         appBar: AppBar(
@@ -118,6 +118,12 @@ class _HomePageState extends State<HomePage> {
               Tab(
                 child: Text("수산물"),
               ),
+              Tab(
+                child: Text("과일류"),
+              ),
+              Tab(
+                child: Text("채소류"),
+              ),
             ],
           ),
         ),
@@ -144,6 +150,213 @@ class _HomePageState extends State<HomePage> {
                                 int.parse('${datas.dpr1.replaceAll(",", "")}');
                             late int agoPrice =
                                 int.parse('${datas.dpr2.replaceAll(",", "")}');
+                            if (datas.categoryName == "식량작물") {
+                              return SizedBox(
+                                  height: 80,
+                                  child: Card(
+                                      shadowColor: Palette.shadowColor,
+                                      elevation: 3,
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 7),
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        ComparePage(
+                                                            title:
+                                                                'ComparePage',
+                                                            items: datas)));
+                                          },
+                                          child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Container(
+                                                  margin: EdgeInsets.all(10),
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(datas.itemName,
+                                                          style: Styles
+                                                              .itemNameText),
+                                                      Text(datas.unit,
+                                                          style:
+                                                              Styles.unitText),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.end,
+                                                    children: [
+                                                      if (thedayPrice >
+                                                          agoPrice)
+                                                        Container(
+                                                          margin:
+                                                              EdgeInsets.all(
+                                                                  10),
+                                                          child: Text(
+                                                            datas.dpr1 + "원",
+                                                            style: Styles
+                                                                .dprUpText,
+                                                          ),
+                                                        )
+                                                      else
+                                                        Container(
+                                                          margin:
+                                                              EdgeInsets.all(
+                                                                  10),
+                                                          child: Text(
+                                                            datas.dpr1 + "원",
+                                                            style: Styles
+                                                                .dprDownText,
+                                                          ),
+                                                        )
+                                                    ])
+                                              ]))));
+                            } else {
+                              return SizedBox.shrink();
+                            }
+                          },
+                        );
+                      } else if (snapshot.hasError) {
+                        return Text('${snapshot.error}');
+                      }
+                      return const CircularProgressIndicator();
+                    }),
+              ),
+            ),
+            Tab(
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                child: new FutureBuilder<PriceList>(
+                    future: futureDaily,
+                    builder: (BuildContext context, snapshot) {
+                      if (snapshot.hasData) {
+                        var items = snapshot.data!.price;
+                        return ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          padding: EdgeInsets.zero,
+                          itemCount: items == null ? 0 : items.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            var datas = items![index];
+                            late int thedayPrice =
+                                int.parse('${datas.dpr1.replaceAll(",", "")}');
+                            late int agoPrice =
+                                int.parse('${datas.dpr2.replaceAll(",", "")}');
+                            if (datas.categoryName == "축산물") {
+                              return SizedBox(
+                                  height: 80,
+                                  child: Card(
+                                      shadowColor: Palette.shadowColor,
+                                      elevation: 3,
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 7),
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        ComparePage(
+                                                            title:
+                                                                'ComparePage',
+                                                            items: datas)));
+                                          },
+                                          child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Container(
+                                                  margin: EdgeInsets.all(10),
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(datas.itemName,
+                                                          style: Styles
+                                                              .itemNameText),
+                                                      Text(datas.unit,
+                                                          style:
+                                                              Styles.unitText),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.end,
+                                                    children: [
+                                                      if (thedayPrice >
+                                                          agoPrice)
+                                                        Container(
+                                                          margin:
+                                                              EdgeInsets.all(
+                                                                  10),
+                                                          child: Text(
+                                                            datas.dpr1 + "원",
+                                                            style: Styles
+                                                                .dprUpText,
+                                                          ),
+                                                        )
+                                                      else
+                                                        Container(
+                                                          margin:
+                                                              EdgeInsets.all(
+                                                                  10),
+                                                          child: Text(
+                                                            datas.dpr1 + "원",
+                                                            style: Styles
+                                                                .dprDownText,
+                                                          ),
+                                                        )
+                                                    ])
+                                              ]))));
+                            } else {
+                              return SizedBox.shrink();
+                            }
+                          },
+                        );
+                      } else if (snapshot.hasError) {
+                        return Text('${snapshot.error}');
+                      }
+                      return const CircularProgressIndicator();
+                    }),
+              ),
+            ),
+            Tab(
+                child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+              child: new FutureBuilder<PriceList>(
+                  future: futureDaily,
+                  builder: (BuildContext context, snapshot) {
+                    if (snapshot.hasData) {
+                      var items = snapshot.data!.price;
+                      return ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        padding: EdgeInsets.zero,
+                        itemCount: items == null ? 0 : items.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          var datas = items![index];
+                          late int thedayPrice =
+                              int.parse('${datas.dpr1.replaceAll(",", "")}');
+                          late int agoPrice =
+                              int.parse('${datas.dpr2.replaceAll(",", "")}');
+                          if (datas.categoryName == "수산물") {
                             return SizedBox(
                                 height: 80,
                                 child: Card(
@@ -209,6 +422,111 @@ class _HomePageState extends State<HomePage> {
                                                       )
                                                   ])
                                             ]))));
+                          } else {
+                            return SizedBox.shrink();
+                          }
+                        },
+                      );
+                    } else if (snapshot.hasError) {
+                      return Text('${snapshot.error}');
+                    }
+                    return const CircularProgressIndicator();
+                  }),
+            )),
+            Tab(
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                child: new FutureBuilder<PriceList>(
+                    future: futureDaily,
+                    builder: (BuildContext context, snapshot) {
+                      if (snapshot.hasData) {
+                        var items = snapshot.data!.price;
+                        return ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          padding: EdgeInsets.zero,
+                          itemCount: items == null ? 0 : items.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            var datas = items![index];
+                            late int thedayPrice =
+                                int.parse('${datas.dpr1.replaceAll(",", "")}');
+                            late int agoPrice =
+                                int.parse('${datas.dpr2.replaceAll(",", "")}');
+                            if (datas.categoryName == "과일류") {
+                              return SizedBox(
+                                  height: 80,
+                                  child: Card(
+                                      shadowColor: Palette.shadowColor,
+                                      elevation: 3,
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 7),
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        ComparePage(
+                                                            title:
+                                                                'ComparePage',
+                                                            items: datas)));
+                                          },
+                                          child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Container(
+                                                  margin: EdgeInsets.all(10),
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(datas.itemName,
+                                                          style: Styles
+                                                              .itemNameText),
+                                                      Text(datas.unit,
+                                                          style:
+                                                              Styles.unitText),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.end,
+                                                    children: [
+                                                      if (thedayPrice >
+                                                          agoPrice)
+                                                        Container(
+                                                          margin:
+                                                              EdgeInsets.all(
+                                                                  10),
+                                                          child: Text(
+                                                            datas.dpr1 + "원",
+                                                            style: Styles
+                                                                .dprUpText,
+                                                          ),
+                                                        )
+                                                      else
+                                                        Container(
+                                                          margin:
+                                                              EdgeInsets.all(
+                                                                  10),
+                                                          child: Text(
+                                                            datas.dpr1 + "원",
+                                                            style: Styles
+                                                                .dprDownText,
+                                                          ),
+                                                        )
+                                                    ])
+                                              ]))));
+                            } else {
+                              return SizedBox.shrink();
+                            }
                           },
                         );
                       } else if (snapshot.hasError) {
@@ -221,42 +539,104 @@ class _HomePageState extends State<HomePage> {
             Tab(
               child: Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-                child: ListView(
-                  scrollDirection: Axis.vertical,
-                  padding: EdgeInsets.zero,
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                      child: CustomBox(),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Tab(
-              child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-                child: ListView(
-                  scrollDirection: Axis.vertical,
-                  padding: EdgeInsets.zero,
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                      child: GestureDetector(
-                        // onTap: () {
-                        //   Navigator.push(
-                        //       context,
-                        //       MaterialPageRoute(
-                        //           builder: (context) =>
-                        //               const ComparePage(title: 'ComparePage')));
-                        // },
-                        child: CustomBox(),
-                      ),
-                    )
-                  ],
-                ),
+                child: new FutureBuilder<PriceList>(
+                    future: futureDaily,
+                    builder: (BuildContext context, snapshot) {
+                      if (snapshot.hasData) {
+                        var items = snapshot.data!.price;
+                        return ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          padding: EdgeInsets.zero,
+                          itemCount: items == null ? 0 : items.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            var datas = items![index];
+                            late int thedayPrice =
+                                int.parse('${datas.dpr1.replaceAll(",", "")}');
+                            late int agoPrice =
+                                int.parse('${datas.dpr2.replaceAll(",", "")}');
+                            if (datas.categoryName == "채소류") {
+                              return SizedBox(
+                                  height: 80,
+                                  child: Card(
+                                      shadowColor: Palette.shadowColor,
+                                      elevation: 3,
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 7),
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        ComparePage(
+                                                            title:
+                                                                'ComparePage',
+                                                            items: datas)));
+                                          },
+                                          child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Container(
+                                                  margin: EdgeInsets.all(10),
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(datas.itemName,
+                                                          style: Styles
+                                                              .itemNameText),
+                                                      Text(datas.unit,
+                                                          style:
+                                                              Styles.unitText),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.end,
+                                                    children: [
+                                                      if (thedayPrice >
+                                                          agoPrice)
+                                                        Container(
+                                                          margin:
+                                                              EdgeInsets.all(
+                                                                  10),
+                                                          child: Text(
+                                                            datas.dpr1 + "원",
+                                                            style: Styles
+                                                                .dprUpText,
+                                                          ),
+                                                        )
+                                                      else
+                                                        Container(
+                                                          margin:
+                                                              EdgeInsets.all(
+                                                                  10),
+                                                          child: Text(
+                                                            datas.dpr1 + "원",
+                                                            style: Styles
+                                                                .dprDownText,
+                                                          ),
+                                                        )
+                                                    ])
+                                              ]))));
+                            } else {
+                              return SizedBox.shrink();
+                            }
+                          },
+                        );
+                      } else if (snapshot.hasError) {
+                        return Text('${snapshot.error}');
+                      }
+                      return const CircularProgressIndicator();
+                    }),
               ),
             ),
           ],

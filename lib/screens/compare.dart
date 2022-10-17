@@ -161,9 +161,6 @@ class _Compare extends State<ComparePage> {
                         onChanged: (text) {
                           setState(() {
                             inputText = text;
-                            if (inputText == " ") {
-                              inputText = '0';
-                            }
                           });
                         },
                         obscureText: false,
