@@ -6,7 +6,6 @@ import 'package:pricy/utilities/styles.dart';
 import 'package:pricy/widgets/customContainer.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import '../assets/colors/palette.dart';
-import '../providers/periodByData.dart';
 
 class ComparePage extends StatefulWidget {
   ComparePage({super.key, required this.title, required this.items});
