@@ -10,9 +10,11 @@
 - Prettier
 
 ## 📱Features
-<img src="./readmes/home_screen.png" height="350px" width="180px">
-<img src="./readmes/detail_screen_1.png" height="350px" width="180px">
-<img src="./readmes/detail_screen_2.png" height="350px" width="180px">
+<p align="center">
+<img src="./readmes/home_screen.png" height="500px" width="260px">
+<img src="./readmes/detail_screen_1.png" height="500px" width="260px">
+<img src="./readmes/detail_screen_2.png" height="500px" width="260px">
+</p>
 
 ## ✨Update history
 
