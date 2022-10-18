@@ -71,7 +71,7 @@ class Price {
         itemName: json["item_name"],
         unit: json["unit"],
         dpr1: json["dpr1"],
-        dpr2: json["dpr2"],
+        dpr2: json["dpr2"].toString(),
         dpr3: json["dpr3"].toString(),
         dpr4: json["dpr4"].toString());
   }

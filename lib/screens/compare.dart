@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -158,7 +160,7 @@ class _Compare extends State<ComparePage> {
                       ),
                       alignment: AlignmentDirectional(0, 0),
                       child: TextField(
-                        onChanged: (text) {
+                        onSubmitted: (text) {
                           setState(() {
                             inputText = text;
                           });
@@ -168,7 +170,11 @@ class _Compare extends State<ComparePage> {
                           border: InputBorder.none,
                           labelText: '원하는 금액을 입력하세요',
                         ),
-                        keyboardType: TextInputType.number,
+                        keyboardType: Platform.isIOS
+                            ? TextInputType.numberWithOptions(
+                                signed: true, decimal: true)
+                            : TextInputType.number,
+                        textInputAction: TextInputAction.done,
                         inputFormatters: <TextInputFormatter>[
                           FilteringTextInputFormatter.digitsOnly
                         ],
@@ -208,7 +214,7 @@ class _Compare extends State<ComparePage> {
                                 style: Styles.dprText,
                               ),
                               Text(
-                                "차액 : ${result} 원",
+                                "차액 : ${(result)} 원",
                                 style: Styles.dprText,
                               ),
                             ],
@@ -219,7 +225,7 @@ class _Compare extends State<ComparePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    if (result == dayPrice)
+                    if (-(result) == -dayPrice)
                       ItemBox()
                     else if (result > 0)
                       TakeBuyBox()
