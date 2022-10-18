@@ -9,6 +9,11 @@
 - Dart
 - Prettier
 
+## 📱Features
+<img src="./readmes/home_screen.png" height="350px" width="180px">
+<img src="./readmes/detail_screen_1.png" height="350px" width="180px">
+<img src="./readmes/detail_screen_2.png" height="350px" width="180px">
+
 ## ✨Update history
 
 <details>
