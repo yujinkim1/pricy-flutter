@@ -11,9 +11,9 @@
 
 ## 📱Features
 <p align="center">
-<img src="./readmes/home_screen.png" height="500px" width="260px">
-<img src="./readmes/detail_screen_1.png" height="500px" width="260px">
-<img src="./readmes/detail_screen_2.png" height="500px" width="260px">
+<img src="./readmes/home_screen.png" height="400px" width="210px">
+<img src="./readmes/detail_screen_1.png" height="400px" width="210px">
+<img src="./readmes/detail_screen_2.png" height="400px" width="210px">
 </p>
 
 ## ✨Update history
