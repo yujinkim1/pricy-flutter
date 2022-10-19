@@ -25,6 +25,11 @@ class PriceList {
         price!.add(Price.fromJson(v));
       });
     }
+    // else {
+    //   json['price'].forEach((v) {
+    //     price!.add(Price.fromJson(v-1));
+    //   });
+    // }
   }
 
   Map<String, dynamic> toJson(Type priceList) {
@@ -32,9 +37,8 @@ class PriceList {
     if (this.price != null) {
       data['price'] = this.price!.map((v) => v.toJson()).toList();
     } else if (this.price == null) {
-      var emptyValue = 0;
-      data['price'] =
-          this.price!.map((emptyValue) => emptyValue.toJson()).toList();
+      const emptyValue = '0';
+      this.price!.map((emptyValue) => emptyValue.toJson()).toList();
     }
     return data;
   }
