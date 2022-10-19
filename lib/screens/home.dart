@@ -441,6 +441,8 @@ class _HomePageState extends State<HomePage> {
                     builder: (BuildContext context, snapshot) {
                       if (snapshot.hasData) {
                         var items = snapshot.data!.price;
+                        // final items = snapshot.data!.price;
+                        // items == null ? null : "000";
                         return ListView.builder(
                           scrollDirection: Axis.vertical,
                           padding: EdgeInsets.zero,
@@ -449,8 +451,12 @@ class _HomePageState extends State<HomePage> {
                             var datas = items![index];
                             late int thedayPrice =
                                 int.parse('${datas.dpr1.replaceAll(",", "")}');
+                            late String agoDay = datas.dpr2 == "[]"
+                                ? datas.dpr2 = '0'
+                                : datas.dpr2;
                             late int agoPrice =
-                                int.parse('${datas.dpr2.replaceAll(",", "")}');
+                                int.parse('${agoDay.replaceAll(",", "")}');
+
                             if (datas.categoryName == "과일류") {
                               return SizedBox(
                                   height: 80,

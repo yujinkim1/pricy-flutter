@@ -1,6 +1,4 @@
 import 'dart:io';
-
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pricy/providers/dailyByData.dart';
@@ -19,10 +17,14 @@ class ComparePage extends StatefulWidget {
 
 class _Compare extends State<ComparePage> {
   String inputText = '0';
-  late String theDay = widget.items.dpr1;
-  late String dayAgo = widget.items.dpr2;
-  late String monthAgo = widget.items.dpr3;
-  late String yearAgo = widget.items.dpr4;
+  late String theDay =
+      widget.items.dpr1 == "[]" ? widget.items.dpr1 = '0' : widget.items.dpr1;
+  late String dayAgo =
+      widget.items.dpr2 == "[]" ? widget.items.dpr2 = '0' : widget.items.dpr2;
+  late String monthAgo =
+      widget.items.dpr3 == "[]" ? widget.items.dpr3 = '0' : widget.items.dpr3;
+  late String yearAgo =
+      widget.items.dpr4 == "[]" ? widget.items.dpr4 = '0' : widget.items.dpr4;
   late int dayPrice = int.parse('${theDay.replaceAll(",", "")}');
   // late int dayAgoPrice = int.parse('${dayAgo.replaceAll(",", "")}');
   // late int monthAgoPrice = int.parse('${monthAgo.replaceAll(",", "")}');
@@ -115,8 +117,8 @@ class _Compare extends State<ComparePage> {
                             child: SfCartesianChart(
                                 primaryXAxis: CategoryAxis(),
                                 primaryYAxis: NumericAxis(
-                                    minimum: min - min / 2,
-                                    maximum: max + max / 2),
+                                    minimum: min - min / 3,
+                                    maximum: max + max / 3),
                                 // Chart title
                                 title: ChartTitle(text: '1년간 금액 변화'),
                                 // Enable legend
@@ -214,7 +216,7 @@ class _Compare extends State<ComparePage> {
                                 style: Styles.dprText,
                               ),
                               Text(
-                                "차액 : ${(result)} 원",
+                                "차액 : ${-(result)} 원",
                                 style: Styles.dprText,
                               ),
                             ],
