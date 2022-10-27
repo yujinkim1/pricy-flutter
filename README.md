@@ -22,8 +22,8 @@
 <summary>2022.09.17.</summary>
 <div markdown="1">
 
-    - upgrading flutter 3.3
-        - `flutter upgrading`
+- upgrading flutter 3.3
+- `flutter upgrading`
 
 </div>
 </details>
