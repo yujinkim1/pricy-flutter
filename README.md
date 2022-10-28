@@ -31,12 +31,12 @@
 <summary>2022.09.20.</summary>
 <div markdown="1">
 
-    - modify repo path
-        - `pricy-flutter-app/`
-    - upgrading dart 2
-    - add font-set
-        - NotoSans
-        - NotoSansKR
+- modify repo path
+    - `pricy-flutter-app/`
+- upgrading dart 2
+- add font-set
+    - NotoSans
+    - NotoSansKR
 
 </div>
 </details>
@@ -44,9 +44,9 @@
 <summary>2022.09.21.</summary>
 <div markdown="1">
 
-    - edit main screen
-        - add home screen
-    - add palette for customize colors
+- edit main screen
+    - add home screen
+- add palette for customize colors
 
 </div>
 </details>
@@ -54,9 +54,9 @@
 <summary>2022.09.27.</summary>
 <div markdown="1">
 
-    - add tab bar
-    - add controller
-    - add tab bar view
+- add tab bar
+- add controller
+- add tab bar view
 
 </div>
 </details>
@@ -64,9 +64,9 @@
 <summary>2022.09.28.</summary>
 <div markdown="1">
 
-    - edit home screen
-        - add ListView
-        - add custom widget
+- edit home screen
+    - add ListView
+    - add custom widget
 
 </div>
 </details>
@@ -74,14 +74,14 @@
 <summary>2022.09.30.</summary>
 <div markdown="1">
 
-    - re-structed file path
-        - `lib/...`
-        - add folders
-            - `/models`
-            - `/providers`
-            - `/screens`
-            - `/utilities`
-            - `/widgets`
+- re-structed file path
+    - `lib/...`
+    - add folders
+        - `/models`
+        - `/providers`
+        - `/screens`
+        - `/utilities`
+        - `/widgets`
 
 </div>
 </details>
@@ -89,10 +89,10 @@
 <summary>2022.10.04.</summary>
 <div markdown="1">
 
-    - add screen navigation
-    - add compare screen
-        - add chart
-        - add number pad keyboard
+- add screen navigation
+- add compare screen
+    - add chart
+    - add number pad keyboard
 
 </div>
 </details>
@@ -100,10 +100,10 @@
 <summary>2022.10.6.</summary>
 <div markdown="1">
 
-    - add apis
-    - add certificate
-        - add key
-        - add id
+- add apis
+- add certificate
+    - add key
+    - add id
 
 </div>
 </details>
@@ -111,10 +111,10 @@
 <summary>2022.10.8.</summary>
 <div markdown="1">
 
-    - delete unnecassary files
-        - .dart_tool
-        - /build
-        - .DS_Store
+- delete unnecassary files
+    - .dart_tool
+    - /build
+    - .DS_Store
 
 </div>
 </details>
@@ -122,11 +122,11 @@
 <summary>2022.10.13.</summary>
 <div markdown="1">
 
-    - fixed type_error
-    - add apis
-    - present datas
-    - add utilities/styles
-    - edit screen
+- fixed type_error
+- add apis
+- present datas
+- add utilities/styles
+- edit screen
 
 </div>
 </details>
@@ -134,10 +134,16 @@
 <summary>2022.10.16.</summary>
 <div markdown="1">
 
-    - add chart-view
-    - add input-field-box
-    - present margin value
-    - edit screen styles
+- add chart-view
+- add input-field-box
+- present margin value
+- edit screen styles
 
 </div>
 </details>
+
+## 😄Contributor
+<p align="center">
+한국농수산식품 유통공사 농수산물 유통정보
+<img src="./readmes/kamis.png" height="140px" width="400px">
+</p>
