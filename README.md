@@ -144,7 +144,7 @@
 
 ## 😄Contributor
 <p align="center">
-<img src="./readmes/kamis.png" height="140px" width="400px">
-    <a href="https://www.kamis.or.kr/customer/main/main.do" />
-</img>
+    <a href="https://www.kamis.or.kr/customer/main/main.do">
+        <img src="./readmes/kamis.png" height="140px" width="400px">
+    </a>
 </p>
