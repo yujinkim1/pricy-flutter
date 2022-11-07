@@ -141,6 +141,17 @@
 
 </div>
 </details>
+<details>
+<summary>2022.11.07.</summary>
+<div markdown="1">
+
+- `pub get`
+    - `flutter_config`
+- vaild apis
+    - hiding certificate
+
+</div>
+</details>
 
 ## 😄Contributor
 <p align="center">
