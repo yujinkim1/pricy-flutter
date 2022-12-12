@@ -1,13 +1,13 @@
+# Pricy
+![iOS-11.0+](https://img.shields.io/badge/iOS-11.0+-blue.svg?style=flat-square&logo=apple)
+![Android-10.0+](https://img.shields.io/badge/Android-10.0+-green.svg?style=flat-square&logo=android)
+![Dart-2.18](https://img.shields.io/badge/Dart-2.18-blue.svg?style=flat-square&logo=dart)
+![Flutter-3.9](https://img.shields.io/badge/Flutter-3.9-blue.svg?style=flat-square&logo=flutter)
+
 ## 🧑🏻‍💻Team members
 - hyunryeol Park | [[github]](https://github.com/devpark435)
 - yujin kim | [[github]](https://github.com/yujinkim1)
 - jinwoo Lee | [[github]](https://github.com/yeeZinu)
-
-## 🔨Dev environment
-- Visual Studio Code
-- Flutter3
-- Dart
-- Prettier
 
 ## 📱Features
 <p align="center">
