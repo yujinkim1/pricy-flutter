@@ -136,9 +136,7 @@ class _HomePageState extends State<HomePage> {
             new FutureBuilder<PriceList>(
                 future: futureDaily,
                 builder: (BuildContext context, snapshot) {
-                  var searchItems = snapshot.data!.price;
-                  //while => text =>searchItems[i].itemName ==> index
-                  //searchItems[index] => data
+                  var searchItems = snapshot.data?.price;
                   return Padding(
                     //SearchBar
                     padding: const EdgeInsets.all(10.0),
