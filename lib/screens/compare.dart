@@ -110,13 +110,26 @@ class _Compare extends State<ComparePage> {
                                     minimum: min - min / 3,
                                     maximum: max + max / 3),
                                 //MARK: CHART TITLE
-                                title: ChartTitle(text: '1년간 금액 변화'),
+                                title: ChartTitle(
+                                    text: '1년간 금액 변화',
+                                    textStyle: TextStyle(
+                                        fontSize: 15,
+                                        color: Palette.elementColor,
+                                        fontWeight: FontWeight.bold)),
                                 //MARK: LEGEND IS VISIBLE ? FALSE
                                 legend: Legend(isVisible: false),
                                 //MARK: TOOL TIP IS ENABLE ? TRUE
                                 tooltipBehavior: TooltipBehavior(enable: true),
                                 series: <ChartSeries<_SalesData, String>>[
                                   LineSeries<_SalesData, String>(
+                                      color: Palette.highLightColor,
+                                      width: 3.0,
+                                      markerSettings: MarkerSettings(
+                                          isVisible: true,
+                                          width: 5.0,
+                                          height: 5.0,
+                                          shape: DataMarkerType.circle,
+                                          borderWidth: 5.0),
                                       dataSource: data,
                                       xValueMapper: (_SalesData sales, _) =>
                                           sales.year,
@@ -124,8 +137,12 @@ class _Compare extends State<ComparePage> {
                                           sales.sales,
                                       name: 'Sales',
                                       //MARK: DATA LABEL IS VISIBLE ? TRUE
-                                      dataLabelSettings:
-                                          DataLabelSettings(isVisible: true)),
+                                      dataLabelSettings: DataLabelSettings(
+                                          isVisible: true,
+                                          textStyle: TextStyle(
+                                              color: Palette.elementColor,
+                                              fontSize: 14.0,
+                                              fontWeight: FontWeight.w500))),
                                 ]),
                           )
                         ]))

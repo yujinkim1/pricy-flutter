@@ -200,26 +200,48 @@ class _HomePageState extends State<HomePage> {
                                                       if (thedayPrice >
                                                           agoPrice)
                                                         Container(
-                                                          margin:
-                                                              EdgeInsets.all(
-                                                                  10),
-                                                          child: Text(
-                                                            datas.dpr1 + "원",
-                                                            style: Styles
-                                                                .dprUpText,
-                                                          ),
-                                                        )
+                                                            margin:
+                                                                EdgeInsets.all(
+                                                                    10),
+                                                            child: Row(
+                                                              children: [
+                                                                Icon(
+                                                                  Icons
+                                                                      .arrow_drop_up_outlined,
+                                                                  size: 25,
+                                                                  color: Palette
+                                                                      .increaseColor,
+                                                                ),
+                                                                Text(
+                                                                  datas.dpr1 +
+                                                                      "원",
+                                                                  style: Styles
+                                                                      .dprUpText,
+                                                                ),
+                                                              ],
+                                                            ))
                                                       else
                                                         Container(
-                                                          margin:
-                                                              EdgeInsets.all(
-                                                                  10),
-                                                          child: Text(
-                                                            datas.dpr1 + "원",
-                                                            style: Styles
-                                                                .dprDownText,
-                                                          ),
-                                                        )
+                                                            margin:
+                                                                EdgeInsets.all(
+                                                                    10),
+                                                            child: Row(
+                                                              children: [
+                                                                Icon(
+                                                                  Icons
+                                                                      .arrow_drop_down,
+                                                                  size: 25,
+                                                                  color: Palette
+                                                                      .decreaseColor,
+                                                                ),
+                                                                Text(
+                                                                  datas.dpr1 +
+                                                                      "원",
+                                                                  style: Styles
+                                                                      .dprDownText,
+                                                                ),
+                                                              ],
+                                                            ))
                                                     ])
                                               ]))));
                             } else {
@@ -303,26 +325,48 @@ class _HomePageState extends State<HomePage> {
                                                       if (thedayPrice >
                                                           agoPrice)
                                                         Container(
-                                                          margin:
-                                                              EdgeInsets.all(
-                                                                  10),
-                                                          child: Text(
-                                                            datas.dpr1 + "원",
-                                                            style: Styles
-                                                                .dprUpText,
-                                                          ),
-                                                        )
+                                                            margin:
+                                                                EdgeInsets.all(
+                                                                    10),
+                                                            child: Row(
+                                                              children: [
+                                                                Icon(
+                                                                  Icons
+                                                                      .arrow_drop_up_outlined,
+                                                                  size: 25,
+                                                                  color: Palette
+                                                                      .increaseColor,
+                                                                ),
+                                                                Text(
+                                                                  datas.dpr1 +
+                                                                      "원",
+                                                                  style: Styles
+                                                                      .dprUpText,
+                                                                ),
+                                                              ],
+                                                            ))
                                                       else
                                                         Container(
-                                                          margin:
-                                                              EdgeInsets.all(
-                                                                  10),
-                                                          child: Text(
-                                                            datas.dpr1 + "원",
-                                                            style: Styles
-                                                                .dprDownText,
-                                                          ),
-                                                        )
+                                                            margin:
+                                                                EdgeInsets.all(
+                                                                    10),
+                                                            child: Row(
+                                                              children: [
+                                                                Icon(
+                                                                  Icons
+                                                                      .arrow_drop_down_outlined,
+                                                                  size: 25,
+                                                                  color: Palette
+                                                                      .decreaseColor,
+                                                                ),
+                                                                Text(
+                                                                  datas.dpr1 +
+                                                                      "원",
+                                                                  style: Styles
+                                                                      .dprDownText,
+                                                                ),
+                                                              ],
+                                                            ))
                                                     ])
                                               ]))));
                             } else {
@@ -401,24 +445,48 @@ class _HomePageState extends State<HomePage> {
                                                   children: [
                                                     if (thedayPrice > agoPrice)
                                                       Container(
-                                                        margin:
-                                                            EdgeInsets.all(10),
-                                                        child: Text(
-                                                          datas.dpr1 + "원",
-                                                          style:
-                                                              Styles.dprUpText,
-                                                        ),
-                                                      )
+                                                          margin:
+                                                              EdgeInsets.all(
+                                                                  10),
+                                                          child: Row(
+                                                            children: [
+                                                              Icon(
+                                                                Icons
+                                                                    .arrow_drop_up_outlined,
+                                                                size: 25,
+                                                                color: Palette
+                                                                    .increaseColor,
+                                                              ),
+                                                              Text(
+                                                                datas.dpr1 +
+                                                                    "원",
+                                                                style: Styles
+                                                                    .dprUpText,
+                                                              ),
+                                                            ],
+                                                          ))
                                                     else
                                                       Container(
-                                                        margin:
-                                                            EdgeInsets.all(10),
-                                                        child: Text(
-                                                          datas.dpr1 + "원",
-                                                          style: Styles
-                                                              .dprDownText,
-                                                        ),
-                                                      )
+                                                          margin:
+                                                              EdgeInsets.all(
+                                                                  10),
+                                                          child: Row(
+                                                            children: [
+                                                              Icon(
+                                                                Icons
+                                                                    .arrow_drop_down_outlined,
+                                                                size: 25,
+                                                                color: Palette
+                                                                    .decreaseColor,
+                                                              ),
+                                                              Text(
+                                                                datas.dpr1 +
+                                                                    "원",
+                                                                style: Styles
+                                                                    .dprDownText,
+                                                              ),
+                                                            ],
+                                                          ))
                                                   ])
                                             ]))));
                           } else {
@@ -507,26 +575,48 @@ class _HomePageState extends State<HomePage> {
                                                       if (thedayPrice >
                                                           agoPrice)
                                                         Container(
-                                                          margin:
-                                                              EdgeInsets.all(
-                                                                  10),
-                                                          child: Text(
-                                                            datas.dpr1 + "원",
-                                                            style: Styles
-                                                                .dprUpText,
-                                                          ),
-                                                        )
+                                                            margin:
+                                                                EdgeInsets.all(
+                                                                    10),
+                                                            child: Row(
+                                                              children: [
+                                                                Icon(
+                                                                  Icons
+                                                                      .arrow_drop_up_outlined,
+                                                                  size: 25,
+                                                                  color: Palette
+                                                                      .increaseColor,
+                                                                ),
+                                                                Text(
+                                                                  datas.dpr1 +
+                                                                      "원",
+                                                                  style: Styles
+                                                                      .dprUpText,
+                                                                ),
+                                                              ],
+                                                            ))
                                                       else
                                                         Container(
-                                                          margin:
-                                                              EdgeInsets.all(
-                                                                  10),
-                                                          child: Text(
-                                                            datas.dpr1 + "원",
-                                                            style: Styles
-                                                                .dprDownText,
-                                                          ),
-                                                        )
+                                                            margin:
+                                                                EdgeInsets.all(
+                                                                    10),
+                                                            child: Row(
+                                                              children: [
+                                                                Icon(
+                                                                  Icons
+                                                                      .arrow_drop_down_outlined,
+                                                                  size: 25,
+                                                                  color: Palette
+                                                                      .decreaseColor,
+                                                                ),
+                                                                Text(
+                                                                  datas.dpr1 +
+                                                                      "원",
+                                                                  style: Styles
+                                                                      .dprDownText,
+                                                                ),
+                                                              ],
+                                                            ))
                                                     ])
                                               ]))));
                             } else {
@@ -610,26 +700,48 @@ class _HomePageState extends State<HomePage> {
                                                       if (thedayPrice >
                                                           agoPrice)
                                                         Container(
-                                                          margin:
-                                                              EdgeInsets.all(
-                                                                  10),
-                                                          child: Text(
-                                                            datas.dpr1 + "원",
-                                                            style: Styles
-                                                                .dprUpText,
-                                                          ),
-                                                        )
+                                                            margin:
+                                                                EdgeInsets.all(
+                                                                    10),
+                                                            child: Row(
+                                                              children: [
+                                                                Icon(
+                                                                  Icons
+                                                                      .arrow_drop_up_outlined,
+                                                                  size: 25,
+                                                                  color: Palette
+                                                                      .increaseColor,
+                                                                ),
+                                                                Text(
+                                                                  datas.dpr1 +
+                                                                      "원",
+                                                                  style: Styles
+                                                                      .dprUpText,
+                                                                ),
+                                                              ],
+                                                            ))
                                                       else
                                                         Container(
-                                                          margin:
-                                                              EdgeInsets.all(
-                                                                  10),
-                                                          child: Text(
-                                                            datas.dpr1 + "원",
-                                                            style: Styles
-                                                                .dprDownText,
-                                                          ),
-                                                        )
+                                                            margin:
+                                                                EdgeInsets.all(
+                                                                    10),
+                                                            child: Row(
+                                                              children: [
+                                                                Icon(
+                                                                  Icons
+                                                                      .arrow_drop_down_outlined,
+                                                                  size: 25,
+                                                                  color: Palette
+                                                                      .decreaseColor,
+                                                                ),
+                                                                Text(
+                                                                  datas.dpr1 +
+                                                                      "원",
+                                                                  style: Styles
+                                                                      .dprDownText,
+                                                                ),
+                                                              ],
+                                                            ))
                                                     ])
                                               ]))));
                             } else {
