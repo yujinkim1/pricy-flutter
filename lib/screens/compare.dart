@@ -148,6 +148,19 @@ class _Compare extends State<ComparePage> {
                         ]))
                   ],
                 ),
+                Container(
+                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "금일 가격 : ${theDay} 원",
+                    style: Styles.dprText,
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [chips('100g')],
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -215,10 +228,6 @@ class _Compare extends State<ComparePage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "금일 가격 : ${theDay} 원",
-                                style: Styles.dprText,
-                              ),
-                              Text(
                                 "입력 가격 : ${inputText} 원",
                                 style: Styles.dprText,
                               ),
@@ -254,4 +263,34 @@ class _SalesData {
 
   final String year;
   final int sales;
+}
+
+Widget chips(title) {
+  return GestureDetector(
+    child: Container(
+      alignment: Alignment.center,
+      width: 100,
+      child: Chip(
+        avatar: CircleAvatar(
+          backgroundColor: Colors.white70,
+          child: Text(title),
+        ),
+        label: Container(
+          alignment: Alignment.center,
+          height: 50,
+          width: 50,
+          child: Text(
+            title,
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+        ),
+        backgroundColor: Palette.containerColor,
+        elevation: 3.0,
+        shadowColor: Colors.grey[60],
+      ),
+    ),
+    onTap: () {},
+  );
 }
