@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_config/flutter_config.dart';
 import 'screens/home.dart';
 import 'assets/colors/palette.dart';
 
-void main() {
+//MARK: GET HIDED CERTIFICATE
+void main() async {
+  //MARK: REQUIRED BY FLUTTER CONFIG
+  WidgetsFlutterBinding.ensureInitialized();
+  await FlutterConfig.loadEnvVariables();
+
   runApp(const MyApp());
 }
 

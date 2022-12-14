@@ -136,7 +136,6 @@ class _Compare extends State<ComparePage> {
                   children: [
                     Container(
                       margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                      padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
                       width: MediaQuery.of(context).size.width * 0.9,
                       height: MediaQuery.of(context).size.height * 0.1,
                       decoration: BoxDecoration(
@@ -159,9 +158,10 @@ class _Compare extends State<ComparePage> {
                         },
                         obscureText: false,
                         decoration: InputDecoration(
-                          border: InputBorder.none,
-                          labelText: '원하는 금액을 입력하세요',
-                        ),
+                            border: InputBorder.none,
+                            labelText: '비교할 금액을 입력하세요',
+                            filled: true,
+                            fillColor: Palette.containerColor),
                         keyboardType: Platform.isIOS
                             ? TextInputType.numberWithOptions(
                                 signed: true, decimal: true)

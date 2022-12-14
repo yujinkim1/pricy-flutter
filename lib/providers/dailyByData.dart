@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../utilities/kamis.dart';
 import 'dart:async' show Future;
+import '/utilities/kamis.dart';
 
 Future<PriceList> fetchDaily() async {
   final response = await http.get(dailyByUrl);
