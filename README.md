@@ -11,9 +11,9 @@
 
 ## 📱Features
 <p align="center">
-<img src="./readmes/home_screen.png" height="400px" width="210px">
-<img src="./readmes/detail_screen_1.png" height="400px" width="210px">
-<img src="./readmes/detail_screen_2.png" height="400px" width="210px">
+<img src=".github/home_screen.png" height="400px" width="210px">
+<img src=".github/detail_screen_1.png" height="400px" width="210px">
+<img src=".github/detail_screen_2.png" height="400px" width="210px">
 </p>
 
 ## [✨Update history](.github/HISTORY.md)
@@ -22,6 +22,6 @@
 ## 😄Contributor
 <p align="center">
     <a href="https://www.kamis.or.kr/customer/main/main.do">
-        <img src="./readmes/kamis.png" height="140px" width="400px">
+        <img src=".github/kamis.png" height="140px" width="400px">
     </a>
 </p>
