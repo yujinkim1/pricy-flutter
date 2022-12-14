@@ -25,6 +25,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final _searchInputcontroller = TextEditingController(); //검색 컨트롤러
+    String searchText = ''; //검색어
     //MARK: DEFAULT TAB CONTORLLER
     return DefaultTabController(
       length: 5,
@@ -128,632 +130,711 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-        body: TabBarView(
-          children: <Widget>[
-            //MARK: TAB BAR VIEW IN LIST CONTAINER
-            Tab(
-              child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-                child: new FutureBuilder<PriceList>(
-                    future: futureDaily,
-                    builder: (BuildContext context, snapshot) {
-                      if (snapshot.hasData) {
-                        var items = snapshot.data!.price;
-                        return ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          padding: EdgeInsets.zero,
-                          itemCount: items == null ? 0 : items.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            var datas = items![index];
-                            late int thedayPrice =
-                                int.parse('${datas.dpr1.replaceAll(",", "")}');
-                            late int agoPrice =
-                                int.parse('${datas.dpr2.replaceAll(",", "")}');
-                            if (datas.categoryName == "식량작물") {
-                              return SizedBox(
-                                  height: 80,
-                                  child: Card(
-                                      shadowColor: Palette.shadowColor,
-                                      elevation: 3,
-                                      margin: const EdgeInsets.symmetric(
-                                          horizontal: 10, vertical: 7),
-                                      child: GestureDetector(
-                                          onTap: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        ComparePage(
-                                                            title:
-                                                                'ComparePage',
-                                                            items: datas)));
-                                          },
-                                          child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Container(
-                                                  margin: EdgeInsets.all(10),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Text(datas.itemName,
-                                                          style: Styles
-                                                              .itemNameText),
-                                                      Text(datas.unit,
-                                                          style:
-                                                              Styles.unitText),
-                                                    ],
-                                                  ),
-                                                ),
-                                                Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.end,
-                                                    children: [
-                                                      if (thedayPrice >
-                                                          agoPrice)
-                                                        Container(
-                                                            margin:
-                                                                EdgeInsets.all(
-                                                                    10),
-                                                            child: Row(
-                                                              children: [
-                                                                Icon(
-                                                                  Icons
-                                                                      .arrow_drop_up_outlined,
-                                                                  size: 25,
-                                                                  color: Palette
-                                                                      .increaseColor,
-                                                                ),
-                                                                Text(
-                                                                  datas.dpr1 +
-                                                                      "원",
-                                                                  style: Styles
-                                                                      .dprUpText,
-                                                                ),
-                                                              ],
-                                                            ))
-                                                      else
-                                                        Container(
-                                                            margin:
-                                                                EdgeInsets.all(
-                                                                    10),
-                                                            child: Row(
-                                                              children: [
-                                                                Icon(
-                                                                  Icons
-                                                                      .arrow_drop_down,
-                                                                  size: 25,
-                                                                  color: Palette
-                                                                      .decreaseColor,
-                                                                ),
-                                                                Text(
-                                                                  datas.dpr1 +
-                                                                      "원",
-                                                                  style: Styles
-                                                                      .dprDownText,
-                                                                ),
-                                                              ],
-                                                            ))
-                                                    ])
-                                              ]))));
-                            } else {
-                              return SizedBox.shrink();
-                            }
-                          },
-                        );
-                      } else if (snapshot.hasError) {
-                        return Text('${snapshot.error}');
-                      }
-                      return const CircularProgressIndicator();
-                    }),
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                height: 50,
+                width: MediaQuery.of(context).size.width * 0.9,
+                decoration: BoxDecoration(
+                    // border: Border.all(width: 1, color: Palette.decreaseColor),
+                    borderRadius: BorderRadius.circular(15)),
+                child: TextField(
+                  controller: _searchInputcontroller,
+                  decoration: InputDecoration(
+                      filled: true,
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                        Radius.circular(20.0),
+                      )),
+                      prefixIcon: IconButton(
+                        icon: Icon(Icons.search),
+                        onPressed: () {},
+                      ),
+                      suffixIcon: IconButton(
+                        icon: Icon(Icons.clear),
+                        onPressed: () {},
+                      )),
+                ),
               ),
             ),
-            Tab(
-              child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-                child: new FutureBuilder<PriceList>(
-                    future: futureDaily,
-                    builder: (BuildContext context, snapshot) {
-                      if (snapshot.hasData) {
-                        var items = snapshot.data!.price;
-                        return ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          padding: EdgeInsets.zero,
-                          itemCount: items == null ? 0 : items.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            var datas = items![index];
-                            late int thedayPrice =
-                                int.parse('${datas.dpr1.replaceAll(",", "")}');
-                            late int agoPrice =
-                                int.parse('${datas.dpr2.replaceAll(",", "")}');
-                            if (datas.categoryName == "축산물") {
-                              return SizedBox(
-                                  height: 80,
-                                  child: Card(
-                                      shadowColor: Palette.shadowColor,
-                                      elevation: 3,
-                                      margin: const EdgeInsets.symmetric(
-                                          horizontal: 10, vertical: 7),
-                                      child: GestureDetector(
-                                          onTap: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        ComparePage(
-                                                            title:
-                                                                'ComparePage',
-                                                            items: datas)));
-                                          },
-                                          child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Container(
-                                                  margin: EdgeInsets.all(10),
-                                                  child: Column(
+            Container(
+              height: MediaQuery.of(context).size.height * 0.7,
+              child: TabBarView(
+                children: <Widget>[
+                  //MARK: TAB BAR VIEW IN LIST CONTAINER
+                  Tab(
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                      child: new FutureBuilder<PriceList>(
+                          future: futureDaily,
+                          builder: (BuildContext context, snapshot) {
+                            if (snapshot.hasData) {
+                              var items = snapshot.data!.price;
+                              return ListView.builder(
+                                scrollDirection: Axis.vertical,
+                                padding: EdgeInsets.zero,
+                                itemCount: items == null ? 0 : items.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  var datas = items![index];
+                                  late int thedayPrice = int.parse(
+                                      '${datas.dpr1.replaceAll(",", "")}');
+                                  late int agoPrice = int.parse(
+                                      '${datas.dpr2.replaceAll(",", "")}');
+                                  if (datas.categoryName == "식량작물") {
+                                    return SizedBox(
+                                        height: 80,
+                                        child: Card(
+                                            shadowColor: Palette.shadowColor,
+                                            elevation: 3,
+                                            margin: const EdgeInsets.symmetric(
+                                                horizontal: 10, vertical: 7),
+                                            child: GestureDetector(
+                                                onTap: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              ComparePage(
+                                                                  title:
+                                                                      'ComparePage',
+                                                                  items:
+                                                                      datas)));
+                                                },
+                                                child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
                                                     crossAxisAlignment:
                                                         CrossAxisAlignment
-                                                            .start,
+                                                            .center,
                                                     children: [
-                                                      Text(datas.itemName,
-                                                          style: Styles
-                                                              .itemNameText),
-                                                      Text(datas.unit,
-                                                          style:
-                                                              Styles.unitText),
-                                                    ],
-                                                  ),
-                                                ),
-                                                Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.end,
-                                                    children: [
-                                                      if (thedayPrice >
-                                                          agoPrice)
-                                                        Container(
-                                                            margin:
-                                                                EdgeInsets.all(
-                                                                    10),
-                                                            child: Row(
-                                                              children: [
-                                                                Icon(
-                                                                  Icons
-                                                                      .arrow_drop_up_outlined,
-                                                                  size: 25,
-                                                                  color: Palette
-                                                                      .increaseColor,
-                                                                ),
-                                                                Text(
-                                                                  datas.dpr1 +
-                                                                      "원",
-                                                                  style: Styles
-                                                                      .dprUpText,
-                                                                ),
-                                                              ],
-                                                            ))
-                                                      else
-                                                        Container(
-                                                            margin:
-                                                                EdgeInsets.all(
-                                                                    10),
-                                                            child: Row(
-                                                              children: [
-                                                                Icon(
-                                                                  Icons
-                                                                      .arrow_drop_down_outlined,
-                                                                  size: 25,
-                                                                  color: Palette
-                                                                      .decreaseColor,
-                                                                ),
-                                                                Text(
-                                                                  datas.dpr1 +
-                                                                      "원",
-                                                                  style: Styles
-                                                                      .dprDownText,
-                                                                ),
-                                                              ],
-                                                            ))
-                                                    ])
-                                              ]))));
-                            } else {
-                              return SizedBox.shrink();
+                                                      Container(
+                                                        margin:
+                                                            EdgeInsets.all(10),
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(datas.itemName,
+                                                                style: Styles
+                                                                    .itemNameText),
+                                                            Text(datas.unit,
+                                                                style: Styles
+                                                                    .unitText),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .end,
+                                                          children: [
+                                                            if (thedayPrice >
+                                                                agoPrice)
+                                                              Container(
+                                                                  margin:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              10),
+                                                                  child: Row(
+                                                                    children: [
+                                                                      Icon(
+                                                                        Icons
+                                                                            .arrow_drop_up_outlined,
+                                                                        size:
+                                                                            25,
+                                                                        color: Palette
+                                                                            .increaseColor,
+                                                                      ),
+                                                                      Text(
+                                                                        datas.dpr1 +
+                                                                            "원",
+                                                                        style: Styles
+                                                                            .dprUpText,
+                                                                      ),
+                                                                    ],
+                                                                  ))
+                                                            else
+                                                              Container(
+                                                                  margin:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              10),
+                                                                  child: Row(
+                                                                    children: [
+                                                                      Icon(
+                                                                        Icons
+                                                                            .arrow_drop_down,
+                                                                        size:
+                                                                            25,
+                                                                        color: Palette
+                                                                            .decreaseColor,
+                                                                      ),
+                                                                      Text(
+                                                                        datas.dpr1 +
+                                                                            "원",
+                                                                        style: Styles
+                                                                            .dprDownText,
+                                                                      ),
+                                                                    ],
+                                                                  ))
+                                                          ])
+                                                    ]))));
+                                  } else {
+                                    return SizedBox.shrink();
+                                  }
+                                },
+                              );
+                            } else if (snapshot.hasError) {
+                              return Text('${snapshot.error}');
                             }
-                          },
-                        );
-                      } else if (snapshot.hasError) {
-                        return Text('${snapshot.error}');
-                      }
-                      return const CircularProgressIndicator();
-                    }),
-              ),
-            ),
-            Tab(
-                child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-              child: new FutureBuilder<PriceList>(
-                  future: futureDaily,
-                  builder: (BuildContext context, snapshot) {
-                    if (snapshot.hasData) {
-                      var items = snapshot.data!.price;
-                      return ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        padding: EdgeInsets.zero,
-                        itemCount: items == null ? 0 : items.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          var datas = items![index];
-                          late int thedayPrice =
-                              int.parse('${datas.dpr1.replaceAll(",", "")}');
-                          late int agoPrice =
-                              int.parse('${datas.dpr2.replaceAll(",", "")}');
-                          if (datas.categoryName == "수산물") {
-                            return SizedBox(
-                                height: 80,
-                                child: Card(
-                                    shadowColor: Palette.shadowColor,
-                                    elevation: 3,
-                                    margin: const EdgeInsets.symmetric(
-                                        horizontal: 10, vertical: 7),
-                                    child: GestureDetector(
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ComparePage(
-                                                          title: 'ComparePage',
-                                                          items: datas)));
-                                        },
-                                        child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Container(
-                                                margin: EdgeInsets.all(10),
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(datas.itemName,
-                                                        style: Styles
-                                                            .itemNameText),
-                                                    Text(datas.unit,
-                                                        style: Styles.unitText),
-                                                  ],
-                                                ),
-                                              ),
-                                              Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
+                            return const CircularProgressIndicator();
+                          }),
+                    ),
+                  ),
+                  Tab(
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                      child: new FutureBuilder<PriceList>(
+                          future: futureDaily,
+                          builder: (BuildContext context, snapshot) {
+                            if (snapshot.hasData) {
+                              var items = snapshot.data!.price;
+                              return ListView.builder(
+                                scrollDirection: Axis.vertical,
+                                padding: EdgeInsets.zero,
+                                itemCount: items == null ? 0 : items.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  var datas = items![index];
+                                  late int thedayPrice = int.parse(
+                                      '${datas.dpr1.replaceAll(",", "")}');
+                                  late int agoPrice = int.parse(
+                                      '${datas.dpr2.replaceAll(",", "")}');
+                                  if (datas.categoryName == "축산물") {
+                                    return SizedBox(
+                                        height: 80,
+                                        child: Card(
+                                            shadowColor: Palette.shadowColor,
+                                            elevation: 3,
+                                            margin: const EdgeInsets.symmetric(
+                                                horizontal: 10, vertical: 7),
+                                            child: GestureDetector(
+                                                onTap: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              ComparePage(
+                                                                  title:
+                                                                      'ComparePage',
+                                                                  items:
+                                                                      datas)));
+                                                },
+                                                child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Container(
+                                                        margin:
+                                                            EdgeInsets.all(10),
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(datas.itemName,
+                                                                style: Styles
+                                                                    .itemNameText),
+                                                            Text(datas.unit,
+                                                                style: Styles
+                                                                    .unitText),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .end,
+                                                          children: [
+                                                            if (thedayPrice >
+                                                                agoPrice)
+                                                              Container(
+                                                                  margin:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              10),
+                                                                  child: Row(
+                                                                    children: [
+                                                                      Icon(
+                                                                        Icons
+                                                                            .arrow_drop_up_outlined,
+                                                                        size:
+                                                                            25,
+                                                                        color: Palette
+                                                                            .increaseColor,
+                                                                      ),
+                                                                      Text(
+                                                                        datas.dpr1 +
+                                                                            "원",
+                                                                        style: Styles
+                                                                            .dprUpText,
+                                                                      ),
+                                                                    ],
+                                                                  ))
+                                                            else
+                                                              Container(
+                                                                  margin:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              10),
+                                                                  child: Row(
+                                                                    children: [
+                                                                      Icon(
+                                                                        Icons
+                                                                            .arrow_drop_down_outlined,
+                                                                        size:
+                                                                            25,
+                                                                        color: Palette
+                                                                            .decreaseColor,
+                                                                      ),
+                                                                      Text(
+                                                                        datas.dpr1 +
+                                                                            "원",
+                                                                        style: Styles
+                                                                            .dprDownText,
+                                                                      ),
+                                                                    ],
+                                                                  ))
+                                                          ])
+                                                    ]))));
+                                  } else {
+                                    return SizedBox.shrink();
+                                  }
+                                },
+                              );
+                            } else if (snapshot.hasError) {
+                              return Text('${snapshot.error}');
+                            }
+                            return const CircularProgressIndicator();
+                          }),
+                    ),
+                  ),
+                  Tab(
+                      child: Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                    child: new FutureBuilder<PriceList>(
+                        future: futureDaily,
+                        builder: (BuildContext context, snapshot) {
+                          if (snapshot.hasData) {
+                            var items = snapshot.data!.price;
+                            return ListView.builder(
+                              scrollDirection: Axis.vertical,
+                              padding: EdgeInsets.zero,
+                              itemCount: items == null ? 0 : items.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                var datas = items![index];
+                                late int thedayPrice = int.parse(
+                                    '${datas.dpr1.replaceAll(",", "")}');
+                                late int agoPrice = int.parse(
+                                    '${datas.dpr2.replaceAll(",", "")}');
+                                if (datas.categoryName == "수산물") {
+                                  return SizedBox(
+                                      height: 80,
+                                      child: Card(
+                                          shadowColor: Palette.shadowColor,
+                                          elevation: 3,
+                                          margin: const EdgeInsets.symmetric(
+                                              horizontal: 10, vertical: 7),
+                                          child: GestureDetector(
+                                              onTap: () {
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            ComparePage(
+                                                                title:
+                                                                    'ComparePage',
+                                                                items: datas)));
+                                              },
+                                              child: Row(
                                                   mainAxisAlignment:
-                                                      MainAxisAlignment.end,
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
                                                   children: [
-                                                    if (thedayPrice > agoPrice)
-                                                      Container(
-                                                          margin:
-                                                              EdgeInsets.all(
-                                                                  10),
-                                                          child: Row(
-                                                            children: [
-                                                              Icon(
-                                                                Icons
-                                                                    .arrow_drop_up_outlined,
-                                                                size: 25,
-                                                                color: Palette
-                                                                    .increaseColor,
-                                                              ),
-                                                              Text(
-                                                                datas.dpr1 +
-                                                                    "원",
-                                                                style: Styles
-                                                                    .dprUpText,
-                                                              ),
-                                                            ],
-                                                          ))
-                                                    else
-                                                      Container(
-                                                          margin:
-                                                              EdgeInsets.all(
-                                                                  10),
-                                                          child: Row(
-                                                            children: [
-                                                              Icon(
-                                                                Icons
-                                                                    .arrow_drop_down_outlined,
-                                                                size: 25,
-                                                                color: Palette
-                                                                    .decreaseColor,
-                                                              ),
-                                                              Text(
-                                                                datas.dpr1 +
-                                                                    "원",
-                                                                style: Styles
-                                                                    .dprDownText,
-                                                              ),
-                                                            ],
-                                                          ))
-                                                  ])
-                                            ]))));
-                          } else {
-                            return SizedBox.shrink();
+                                                    Container(
+                                                      margin:
+                                                          EdgeInsets.all(10),
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(datas.itemName,
+                                                              style: Styles
+                                                                  .itemNameText),
+                                                          Text(datas.unit,
+                                                              style: Styles
+                                                                  .unitText),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .end,
+                                                        children: [
+                                                          if (thedayPrice >
+                                                              agoPrice)
+                                                            Container(
+                                                                margin:
+                                                                    EdgeInsets
+                                                                        .all(
+                                                                            10),
+                                                                child: Row(
+                                                                  children: [
+                                                                    Icon(
+                                                                      Icons
+                                                                          .arrow_drop_up_outlined,
+                                                                      size: 25,
+                                                                      color: Palette
+                                                                          .increaseColor,
+                                                                    ),
+                                                                    Text(
+                                                                      datas.dpr1 +
+                                                                          "원",
+                                                                      style: Styles
+                                                                          .dprUpText,
+                                                                    ),
+                                                                  ],
+                                                                ))
+                                                          else
+                                                            Container(
+                                                                margin:
+                                                                    EdgeInsets
+                                                                        .all(
+                                                                            10),
+                                                                child: Row(
+                                                                  children: [
+                                                                    Icon(
+                                                                      Icons
+                                                                          .arrow_drop_down_outlined,
+                                                                      size: 25,
+                                                                      color: Palette
+                                                                          .decreaseColor,
+                                                                    ),
+                                                                    Text(
+                                                                      datas.dpr1 +
+                                                                          "원",
+                                                                      style: Styles
+                                                                          .dprDownText,
+                                                                    ),
+                                                                  ],
+                                                                ))
+                                                        ])
+                                                  ]))));
+                                } else {
+                                  return SizedBox.shrink();
+                                }
+                              },
+                            );
+                          } else if (snapshot.hasError) {
+                            return Text('${snapshot.error}');
                           }
-                        },
-                      );
-                    } else if (snapshot.hasError) {
-                      return Text('${snapshot.error}');
-                    }
-                    return const CircularProgressIndicator();
-                  }),
-            )),
-            Tab(
-              child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-                child: new FutureBuilder<PriceList>(
-                    future: futureDaily,
-                    builder: (BuildContext context, snapshot) {
-                      if (snapshot.hasData) {
-                        var items = snapshot.data!.price;
-                        // final items = snapshot.data!.price;
-                        // items == null ? null : "000";
-                        return ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          padding: EdgeInsets.zero,
-                          itemCount: items == null ? 0 : items.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            var datas = items![index];
-                            late int thedayPrice =
-                                int.parse('${datas.dpr1.replaceAll(",", "")}');
-                            late String agoDay = datas.dpr2 == "[]"
-                                ? datas.dpr2 = '0'
-                                : datas.dpr2;
-                            late int agoPrice =
-                                int.parse('${agoDay.replaceAll(",", "")}');
+                          return const CircularProgressIndicator();
+                        }),
+                  )),
+                  Tab(
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                      child: new FutureBuilder<PriceList>(
+                          future: futureDaily,
+                          builder: (BuildContext context, snapshot) {
+                            if (snapshot.hasData) {
+                              var items = snapshot.data!.price;
+                              // final items = snapshot.data!.price;
+                              // items == null ? null : "000";
+                              return ListView.builder(
+                                scrollDirection: Axis.vertical,
+                                padding: EdgeInsets.zero,
+                                itemCount: items == null ? 0 : items.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  var datas = items![index];
+                                  late int thedayPrice = int.parse(
+                                      '${datas.dpr1.replaceAll(",", "")}');
+                                  late String agoDay = datas.dpr2 == "[]"
+                                      ? datas.dpr2 = '0'
+                                      : datas.dpr2;
+                                  late int agoPrice = int.parse(
+                                      '${agoDay.replaceAll(",", "")}');
 
-                            if (datas.categoryName == "과일류") {
-                              return SizedBox(
-                                  height: 80,
-                                  child: Card(
-                                      shadowColor: Palette.shadowColor,
-                                      elevation: 3,
-                                      margin: const EdgeInsets.symmetric(
-                                          horizontal: 10, vertical: 7),
-                                      child: GestureDetector(
-                                          onTap: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        ComparePage(
-                                                            title:
-                                                                'ComparePage',
-                                                            items: datas)));
-                                          },
-                                          child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Container(
-                                                  margin: EdgeInsets.all(10),
-                                                  child: Column(
+                                  if (datas.categoryName == "과일류") {
+                                    return SizedBox(
+                                        height: 80,
+                                        child: Card(
+                                            shadowColor: Palette.shadowColor,
+                                            elevation: 3,
+                                            margin: const EdgeInsets.symmetric(
+                                                horizontal: 10, vertical: 7),
+                                            child: GestureDetector(
+                                                onTap: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              ComparePage(
+                                                                  title:
+                                                                      'ComparePage',
+                                                                  items:
+                                                                      datas)));
+                                                },
+                                                child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
                                                     crossAxisAlignment:
                                                         CrossAxisAlignment
-                                                            .start,
+                                                            .center,
                                                     children: [
-                                                      Text(datas.itemName,
-                                                          style: Styles
-                                                              .itemNameText),
-                                                      Text(datas.unit,
-                                                          style:
-                                                              Styles.unitText),
-                                                    ],
-                                                  ),
-                                                ),
-                                                Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.end,
-                                                    children: [
-                                                      if (thedayPrice >
-                                                          agoPrice)
-                                                        Container(
-                                                            margin:
-                                                                EdgeInsets.all(
-                                                                    10),
-                                                            child: Row(
-                                                              children: [
-                                                                Icon(
-                                                                  Icons
-                                                                      .arrow_drop_up_outlined,
-                                                                  size: 25,
-                                                                  color: Palette
-                                                                      .increaseColor,
-                                                                ),
-                                                                Text(
-                                                                  datas.dpr1 +
-                                                                      "원",
-                                                                  style: Styles
-                                                                      .dprUpText,
-                                                                ),
-                                                              ],
-                                                            ))
-                                                      else
-                                                        Container(
-                                                            margin:
-                                                                EdgeInsets.all(
-                                                                    10),
-                                                            child: Row(
-                                                              children: [
-                                                                Icon(
-                                                                  Icons
-                                                                      .arrow_drop_down_outlined,
-                                                                  size: 25,
-                                                                  color: Palette
-                                                                      .decreaseColor,
-                                                                ),
-                                                                Text(
-                                                                  datas.dpr1 +
-                                                                      "원",
-                                                                  style: Styles
-                                                                      .dprDownText,
-                                                                ),
-                                                              ],
-                                                            ))
-                                                    ])
-                                              ]))));
-                            } else {
-                              return SizedBox.shrink();
+                                                      Container(
+                                                        margin:
+                                                            EdgeInsets.all(10),
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(datas.itemName,
+                                                                style: Styles
+                                                                    .itemNameText),
+                                                            Text(datas.unit,
+                                                                style: Styles
+                                                                    .unitText),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .end,
+                                                          children: [
+                                                            if (thedayPrice >
+                                                                agoPrice)
+                                                              Container(
+                                                                  margin:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              10),
+                                                                  child: Row(
+                                                                    children: [
+                                                                      Icon(
+                                                                        Icons
+                                                                            .arrow_drop_up_outlined,
+                                                                        size:
+                                                                            25,
+                                                                        color: Palette
+                                                                            .increaseColor,
+                                                                      ),
+                                                                      Text(
+                                                                        datas.dpr1 +
+                                                                            "원",
+                                                                        style: Styles
+                                                                            .dprUpText,
+                                                                      ),
+                                                                    ],
+                                                                  ))
+                                                            else
+                                                              Container(
+                                                                  margin:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              10),
+                                                                  child: Row(
+                                                                    children: [
+                                                                      Icon(
+                                                                        Icons
+                                                                            .arrow_drop_down_outlined,
+                                                                        size:
+                                                                            25,
+                                                                        color: Palette
+                                                                            .decreaseColor,
+                                                                      ),
+                                                                      Text(
+                                                                        datas.dpr1 +
+                                                                            "원",
+                                                                        style: Styles
+                                                                            .dprDownText,
+                                                                      ),
+                                                                    ],
+                                                                  ))
+                                                          ])
+                                                    ]))));
+                                  } else {
+                                    return SizedBox.shrink();
+                                  }
+                                },
+                              );
+                            } else if (snapshot.hasError) {
+                              return Text('${snapshot.error}');
                             }
-                          },
-                        );
-                      } else if (snapshot.hasError) {
-                        return Text('${snapshot.error}');
-                      }
-                      return const CircularProgressIndicator();
-                    }),
-              ),
-            ),
-            Tab(
-              child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-                child: new FutureBuilder<PriceList>(
-                    future: futureDaily,
-                    builder: (BuildContext context, snapshot) {
-                      if (snapshot.hasData) {
-                        var items = snapshot.data!.price;
-                        return ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          padding: EdgeInsets.zero,
-                          itemCount: items == null ? 0 : items.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            var datas = items![index];
-                            late int thedayPrice =
-                                int.parse('${datas.dpr1.replaceAll(",", "")}');
-                            late int agoPrice =
-                                int.parse('${datas.dpr2.replaceAll(",", "")}');
-                            if (datas.categoryName == "채소류") {
-                              return SizedBox(
-                                  height: 80,
-                                  child: Card(
-                                      shadowColor: Palette.shadowColor,
-                                      elevation: 3,
-                                      margin: const EdgeInsets.symmetric(
-                                          horizontal: 10, vertical: 7),
-                                      child: GestureDetector(
-                                          onTap: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        ComparePage(
-                                                            title:
-                                                                'ComparePage',
-                                                            items: datas)));
-                                          },
-                                          child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Container(
-                                                  margin: EdgeInsets.all(10),
-                                                  child: Column(
+                            return const CircularProgressIndicator();
+                          }),
+                    ),
+                  ),
+                  Tab(
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                      child: new FutureBuilder<PriceList>(
+                          future: futureDaily,
+                          builder: (BuildContext context, snapshot) {
+                            if (snapshot.hasData) {
+                              var items = snapshot.data!.price;
+                              return ListView.builder(
+                                scrollDirection: Axis.vertical,
+                                padding: EdgeInsets.zero,
+                                itemCount: items == null ? 0 : items.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  var datas = items![index];
+                                  late int thedayPrice = int.parse(
+                                      '${datas.dpr1.replaceAll(",", "")}');
+                                  late int agoPrice = int.parse(
+                                      '${datas.dpr2.replaceAll(",", "")}');
+                                  if (datas.categoryName == "채소류") {
+                                    return SizedBox(
+                                        height: 80,
+                                        child: Card(
+                                            shadowColor: Palette.shadowColor,
+                                            elevation: 3,
+                                            margin: const EdgeInsets.symmetric(
+                                                horizontal: 10, vertical: 7),
+                                            child: GestureDetector(
+                                                onTap: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              ComparePage(
+                                                                  title:
+                                                                      'ComparePage',
+                                                                  items:
+                                                                      datas)));
+                                                },
+                                                child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
                                                     crossAxisAlignment:
                                                         CrossAxisAlignment
-                                                            .start,
+                                                            .center,
                                                     children: [
-                                                      Text(datas.itemName,
-                                                          style: Styles
-                                                              .itemNameText),
-                                                      Text(datas.unit,
-                                                          style:
-                                                              Styles.unitText),
-                                                    ],
-                                                  ),
-                                                ),
-                                                Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.end,
-                                                    children: [
-                                                      if (thedayPrice >
-                                                          agoPrice)
-                                                        Container(
-                                                            margin:
-                                                                EdgeInsets.all(
-                                                                    10),
-                                                            child: Row(
-                                                              children: [
-                                                                Icon(
-                                                                  Icons
-                                                                      .arrow_drop_up_outlined,
-                                                                  size: 25,
-                                                                  color: Palette
-                                                                      .increaseColor,
-                                                                ),
-                                                                Text(
-                                                                  datas.dpr1 +
-                                                                      "원",
-                                                                  style: Styles
-                                                                      .dprUpText,
-                                                                ),
-                                                              ],
-                                                            ))
-                                                      else
-                                                        Container(
-                                                            margin:
-                                                                EdgeInsets.all(
-                                                                    10),
-                                                            child: Row(
-                                                              children: [
-                                                                Icon(
-                                                                  Icons
-                                                                      .arrow_drop_down_outlined,
-                                                                  size: 25,
-                                                                  color: Palette
-                                                                      .decreaseColor,
-                                                                ),
-                                                                Text(
-                                                                  datas.dpr1 +
-                                                                      "원",
-                                                                  style: Styles
-                                                                      .dprDownText,
-                                                                ),
-                                                              ],
-                                                            ))
-                                                    ])
-                                              ]))));
-                            } else {
-                              return SizedBox.shrink();
+                                                      Container(
+                                                        margin:
+                                                            EdgeInsets.all(10),
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(datas.itemName,
+                                                                style: Styles
+                                                                    .itemNameText),
+                                                            Text(datas.unit,
+                                                                style: Styles
+                                                                    .unitText),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .end,
+                                                          children: [
+                                                            if (thedayPrice >
+                                                                agoPrice)
+                                                              Container(
+                                                                  margin:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              10),
+                                                                  child: Row(
+                                                                    children: [
+                                                                      Icon(
+                                                                        Icons
+                                                                            .arrow_drop_up_outlined,
+                                                                        size:
+                                                                            25,
+                                                                        color: Palette
+                                                                            .increaseColor,
+                                                                      ),
+                                                                      Text(
+                                                                        datas.dpr1 +
+                                                                            "원",
+                                                                        style: Styles
+                                                                            .dprUpText,
+                                                                      ),
+                                                                    ],
+                                                                  ))
+                                                            else
+                                                              Container(
+                                                                  margin:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              10),
+                                                                  child: Row(
+                                                                    children: [
+                                                                      Icon(
+                                                                        Icons
+                                                                            .arrow_drop_down_outlined,
+                                                                        size:
+                                                                            25,
+                                                                        color: Palette
+                                                                            .decreaseColor,
+                                                                      ),
+                                                                      Text(
+                                                                        datas.dpr1 +
+                                                                            "원",
+                                                                        style: Styles
+                                                                            .dprDownText,
+                                                                      ),
+                                                                    ],
+                                                                  ))
+                                                          ])
+                                                    ]))));
+                                  } else {
+                                    return SizedBox.shrink();
+                                  }
+                                },
+                              );
+                            } else if (snapshot.hasError) {
+                              return Text('${snapshot.error}');
                             }
-                          },
-                        );
-                      } else if (snapshot.hasError) {
-                        return Text('${snapshot.error}');
-                      }
-                      return const CircularProgressIndicator();
-                    }),
+                            return const CircularProgressIndicator();
+                          }),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
