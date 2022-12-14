@@ -16,15 +16,15 @@
 <img src=".github/detail_screen_2.png" height="400px" width="210px">
 </p>
 
-## Flutter run settings
-1. create `~/.env`
-2. write the KAMIS certificate keys
+## Flutter Manuals
+### 1. create `~/.env`
+### 2. write the KAMIS certificate keys
     ```bash
     #must be type to string
-    key = "your key"
-    id = "your id"
+    key = "your key" #required
+    id = "your id" #required
     ```
-3. debug & run
+### 3. run
     ```bash
     flutter run
     ```
