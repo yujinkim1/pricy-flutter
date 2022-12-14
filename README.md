@@ -18,16 +18,22 @@
 
 ## Flutter Manuals
 ### 1. create `~/.env`
+
+```bash
+$ cd ~/pricy-flutter-app | echo "" > .env
+```
 ### 2. write the KAMIS certificate keys
-    ```bash
-    #must be type to string
-    key = "your key" #required
-    id = "your id" #required
-    ```
+
+```bash
+#must be type to string
+key = "your key" #required
+id = "your id" #required
+```
 ### 3. run
-    ```bash
-    flutter run
-    ```
+
+```bash
+$ flutter run
+```
 
 ## [Update history](.github/HISTORY.md)
 > 링크를 통해 프로젝트의 이전 기록을 확인할 수 있습니다.
