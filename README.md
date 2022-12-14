@@ -20,7 +20,7 @@
 ### 1. create `~/.env`
 
 ```bash
-$ cd ~/pricy-flutter-app | echo "" > .env
+$ cd ~/pricy-flutter-app | touch .env
 ```
 ### 2. write the KAMIS certificate keys
 
