@@ -25,6 +25,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    int searchTextIndex = 0;
     final _searchInputcontroller = TextEditingController(); //검색 컨트롤러
     String searchText = ''; //검색어
     //MARK: DEFAULT TAB CONTORLLER
@@ -132,33 +133,60 @@ class _HomePageState extends State<HomePage> {
         ),
         body: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Container(
-                height: 50,
-                width: MediaQuery.of(context).size.width * 0.9,
-                decoration: BoxDecoration(
-                    // border: Border.all(width: 1, color: Palette.decreaseColor),
-                    borderRadius: BorderRadius.circular(15)),
-                child: TextField(
-                  controller: _searchInputcontroller,
-                  decoration: InputDecoration(
-                      filled: true,
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                        Radius.circular(20.0),
-                      )),
-                      prefixIcon: IconButton(
-                        icon: Icon(Icons.search),
-                        onPressed: () {},
+            new FutureBuilder<PriceList>(
+                future: futureDaily,
+                builder: (BuildContext context, snapshot) {
+                  var searchItems = snapshot.data!.price;
+                  //while => text =>searchItems[i].itemName ==> index
+                  //searchItems[index] => data
+                  return Padding(
+                    //SearchBar
+                    padding: const EdgeInsets.all(10.0),
+                    child: Container(
+                      height: 50,
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      decoration: BoxDecoration(
+                          // border: Border.all(width: 1, color: Palette.decreaseColor),
+                          borderRadius: BorderRadius.circular(15)),
+                      child: TextField(
+                        controller: _searchInputcontroller,
+                        decoration: InputDecoration(
+                            filled: true,
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                              Radius.circular(20.0),
+                            )),
+                            prefixIcon: IconButton(
+                              icon: Icon(Icons.search),
+                              onPressed: () {
+                                var datas = searchItems![searchTextIndex];
+
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: ((context) => ComparePage(
+                                            title: 'title', items: datas))));
+                              },
+                            ),
+                            suffixIcon: IconButton(
+                              icon: Icon(Icons.clear),
+                              onPressed: () {
+                                _searchInputcontroller.clear();
+                              },
+                            )),
+                        onSubmitted: (value) {
+                          searchText = value;
+                          for (var i = 0; i < searchItems!.length; i++) {
+                            if (searchItems[i].itemName == value) {
+                              searchTextIndex = i;
+                              break;
+                            }
+                          }
+                        },
                       ),
-                      suffixIcon: IconButton(
-                        icon: Icon(Icons.clear),
-                        onPressed: () {},
-                      )),
-                ),
-              ),
-            ),
+                    ),
+                  );
+                }),
             Container(
               height: MediaQuery.of(context).size.height * 0.7,
               child: TabBarView(
@@ -171,7 +199,7 @@ class _HomePageState extends State<HomePage> {
                       child: new FutureBuilder<PriceList>(
                           future: futureDaily,
                           builder: (BuildContext context, snapshot) {
-                            if (snapshot.hasData) {
+                            if (snapshot.hasData == true) {
                               var items = snapshot.data!.price;
                               return ListView.builder(
                                 scrollDirection: Axis.vertical,
