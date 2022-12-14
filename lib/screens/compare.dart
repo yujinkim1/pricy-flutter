@@ -1,11 +1,11 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pricy/providers/dailyByData.dart';
-import 'package:pricy/utilities/styles.dart';
-import 'package:pricy/widgets/customContainer.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import '../assets/colors/palette.dart';
+import '/providers/dailyByData.dart';
+import '/utilities/styles.dart';
+import '/widgets/customContainer.dart';
+import '/assets/colors/palette.dart';
 
 class ComparePage extends StatefulWidget {
   ComparePage({super.key, required this.title, required this.items});
@@ -26,17 +26,7 @@ class _Compare extends State<ComparePage> {
   late String yearAgo =
       widget.items.dpr4 == "[]" ? widget.items.dpr4 = '0' : widget.items.dpr4;
   late int dayPrice = int.parse('${theDay.replaceAll(",", "")}');
-  // late int dayAgoPrice = int.parse('${dayAgo.replaceAll(",", "")}');
-  // late int monthAgoPrice = int.parse('${monthAgo.replaceAll(",", "")}');
-  // late int yearAgoPrice = int.parse('${yearAgo.replaceAll(",", "")}');
   late int result = dayPrice - int.parse(inputText.replaceAll('"', ''));
-
-  // List<_SalesData> data = [
-  //   _SalesData('5개월 전', dayPrice),
-  //   _SalesData('4개월 전', dayAgoPrice),
-  //   _SalesData('3개월 전', monthAgoPrice),
-  //   _SalesData('2개월 전', yearAgoPrice)
-  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -119,11 +109,11 @@ class _Compare extends State<ComparePage> {
                                 primaryYAxis: NumericAxis(
                                     minimum: min - min / 3,
                                     maximum: max + max / 3),
-                                // Chart title
+                                //MARK: CHART TITLE
                                 title: ChartTitle(text: '1년간 금액 변화'),
-                                // Enable legend
+                                //MARK: LEGEND IS VISIBLE ? FALSE
                                 legend: Legend(isVisible: false),
-                                // Enable tooltip
+                                //MARK: TOOL TIP IS ENABLE ? TRUE
                                 tooltipBehavior: TooltipBehavior(enable: true),
                                 series: <ChartSeries<_SalesData, String>>[
                                   LineSeries<_SalesData, String>(
@@ -133,7 +123,7 @@ class _Compare extends State<ComparePage> {
                                       yValueMapper: (_SalesData sales, _) =>
                                           sales.sales,
                                       name: 'Sales',
-                                      // Enable data label
+                                      //MARK: DATA LABEL IS VISIBLE ? TRUE
                                       dataLabelSettings:
                                           DataLabelSettings(isVisible: true)),
                                 ]),
@@ -240,20 +230,6 @@ class _Compare extends State<ComparePage> {
           ),
         ));
   }
-
-  // Widget getWidget() {
-  //   if (result > 0) {
-  //     return Container(
-  //       color: Palette.containerColor,
-  //       child: Text("구매해!"),
-  //     );
-  //   } else {
-  //     return Container(
-  //       color: Palette.highLightColor,
-  //       child: Text("구매하지마!"),
-  //     );
-  //   }
-  // }
 }
 
 class _SalesData {

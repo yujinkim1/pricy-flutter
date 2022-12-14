@@ -1,8 +1,6 @@
 import "package:flutter/material.dart";
-import 'package:pricy/utilities/styles.dart';
+import '/utilities/styles.dart';
 import "/assets/colors/palette.dart";
-import '../screens/compare.dart';
-import '../screens/home.dart';
 
 //MARK: 코드 간결화를 위한 컨테이너 클래스화
 class CustomBox extends StatelessWidget {
@@ -31,7 +29,7 @@ class CustomBox extends StatelessWidget {
   }
 }
 
-//MARK: ItemContainer
+//MARK: ITEM CONTATINER
 class ItemBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -51,7 +49,7 @@ class ItemBox extends StatelessWidget {
   }
 }
 
-//price takebuy&dontbuy box container
+//MARK: TAKE BUY BOX / DONT BUY BOX CONTAINER
 class TakeBuyBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -100,7 +98,7 @@ class DontBuyBox extends StatelessWidget {
   }
 }
 
-//MARK: ChartContainer
+//MARK: CHART CONTAINER
 class ChartBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

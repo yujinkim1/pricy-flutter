@@ -4,10 +4,9 @@ import '../utilities/kamis.dart';
 import 'dart:async' show Future;
 
 Future<PriceList> fetchDaily() async {
-  // String response = await _loadPricyAsset();
   final response = await http.get(dailyByUrl);
 
-  //MARK: isResponseStatusCorrect
+  //MARK: IS RESPONSE STATUS CORRECT 200
   final jsonResponse = json.decode(response.body);
   return new PriceList.fromJson(jsonResponse);
 }
@@ -25,11 +24,6 @@ class PriceList {
         price!.add(Price.fromJson(v));
       });
     }
-    // else {
-    //   json['price'].forEach((v) {
-    //     price!.add(Price.fromJson(v-1));
-    //   });
-    // }
   }
 
   Map<String, dynamic> toJson(Type priceList) {
@@ -42,9 +36,10 @@ class PriceList {
     }
     return data;
   }
-
-  // String PriceListToJson(List<Price> price) =>
-  //     jsonEncode(price.map((v) => v.toJson()).toList().toString());
+  /*
+  String PriceListToJson(List<Price> price) =>
+  jsonEncode(price.map((v) => v.toJson()).toList().toString());
+  */
 }
 
 class Price {

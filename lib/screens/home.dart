@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import '../assets/colors/palette.dart';
-import '../widgets/customContainer.dart';
+import '/assets/colors/palette.dart';
 import 'compare.dart';
-import '../providers/dailyByData.dart';
-import '../utilities/styles.dart';
+import '/providers/dailyByData.dart';
+import '/utilities/styles.dart';
+
+//MARK: DEFINED TEXTEDITING CONTROLLER
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -24,11 +25,11 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    //MARK: DefaultTabController
+    //MARK: DEFAULT TAB CONTORLLER
     return DefaultTabController(
       length: 5,
       child: Scaffold(
-        //MARK: Custom AppBar
+        //MARK: CUSTOM APPBAR
         appBar: AppBar(
           backgroundColor: Palette.screensColor,
           title: const Text(
@@ -41,10 +42,10 @@ class _HomePageState extends State<HomePage> {
           actions: [
             IconButton(
               onPressed: () {
-                //MARK: Button isonPressed ? PopUpDialog
+                //MARK: BUTTON IS ON PRESSED ? POP UP DIALOG
                 showDialog(
                   context: context,
-                  //MARK: Dialog 바깥 영역을 터치 시 화면 닫기 여부
+                  //MARK: USER USING TAB TO CLOSE DIALOG
                   barrierDismissible: true,
                   builder: (BuildContext context) {
                     return AlertDialog(
@@ -55,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                       content: SingleChildScrollView(
                         child: ListBody(
                           children: const [
-                            //MARK: Information needs Classifier
+                            //MARK: APP INFORMATION
                             Text("Sungkonghoe University",
                                 style: TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.bold)),
@@ -95,7 +96,7 @@ class _HomePageState extends State<HomePage> {
           ],
           centerTitle: false,
           elevation: 0,
-          //MARK: bottom in tabBar
+          //MARK: BOTTOM IN TAB BAR
           bottom: const TabBar(
             isScrollable: true,
             labelColor: Palette.highLightColor,
@@ -127,11 +128,9 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-        body:
-            //MARK: TabBarView
-            TabBarView(
+        body: TabBarView(
           children: <Widget>[
-            //MARK: Using Class ListContainer
+            //MARK: TAB BAR VIEW IN LIST CONTAINER
             Tab(
               child: Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
