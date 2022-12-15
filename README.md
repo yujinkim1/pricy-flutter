@@ -16,22 +16,23 @@
 <img src=".github/detail_screen_2.png" height="400px" width="210px">
 </p>
 
-## Flutter Manuals
-### 1. create `~/.env`
+## Requirements
+### 1. Create `~/.env`
 
 ```bash
 $ cd ~/pricy-flutter-app | touch .env
 ```
-### 2. write the KAMIS certificate keys
+### 2. Insert the KAMIS certificate keys
 
 ```bash
 #must be type to string
 key = "your key" #required
 id = "your id" #required
 ```
-### 3. run
+### 3. Run & Debug
 
 ```bash
+$ pwd | cd ~/pricy-flutter-app
 $ flutter run
 ```
 
