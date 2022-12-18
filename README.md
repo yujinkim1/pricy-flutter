@@ -10,8 +10,10 @@
 - jinwoo Lee | [[github]](https://github.com/yeeZinu)
 
 ## Old Features
+> 아래 디테일 토글을 통해 이전 버전을 확인할 수 있습니다.
+
 <details>
-<summary><h3>1.0.0</h3></summary>
+<summary><h4>1.0.0</h4></summary>
 <div markdown="1">
 <p align="center">
 <img src=".github/home_screen.png" height="400px" width="210px">
