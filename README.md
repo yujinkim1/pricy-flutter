@@ -25,9 +25,9 @@
 
 ## New Features(1.0.1)
 <p align="center">
-<img src=".github/new_home_screen.png" height="400px" width="210px">
-<img src=".github/new_detail_screen_1.png" height="400px" width="210px">
-<img src=".github/new_detail_screen_2.png" height="400px" width="210px">
+<img src=".github/new_home_screen.png" height="400px" width="220px">
+<img src=".github/new_detail_screen_1.png" height="400px" width="220px">
+<img src=".github/new_detail_screen_2.png" height="400px" width="220px">
 </p>
 
 ## Requirements
