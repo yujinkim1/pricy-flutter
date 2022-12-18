@@ -9,11 +9,21 @@
 - yujin kim | [[github]](https://github.com/yujinkim1)
 - jinwoo Lee | [[github]](https://github.com/yeeZinu)
 
-## Features
+## Old Features
+<details>
+<summary><h3>1.0.0</h3></summary>
+<div markdown="1">
 <p align="center">
 <img src=".github/home_screen.png" height="400px" width="210px">
 <img src=".github/detail_screen_1.png" height="400px" width="210px">
 <img src=".github/detail_screen_2.png" height="400px" width="210px">
+</p>
+</div>
+</details>
+
+## New Features
+<p align="center">
+<img src=".github/new_home_screen.png" height="400px" width="210px">
 </p>
 
 ## Requirements
