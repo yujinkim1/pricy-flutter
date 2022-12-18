@@ -283,7 +283,7 @@ class _HomePageState extends State<HomePage> {
                                                     children: [
                                                       Container(
                                                         margin:
-                                                            EdgeInsets.all(10),
+                                                            EdgeInsets.all(8),
                                                         child: Column(
                                                           crossAxisAlignment:
                                                               CrossAxisAlignment
@@ -417,7 +417,7 @@ class _HomePageState extends State<HomePage> {
                                                     children: [
                                                       Container(
                                                         margin:
-                                                            EdgeInsets.all(10),
+                                                            EdgeInsets.all(8),
                                                         child: Column(
                                                           crossAxisAlignment:
                                                               CrossAxisAlignment
@@ -547,8 +547,7 @@ class _HomePageState extends State<HomePage> {
                                                       CrossAxisAlignment.center,
                                                   children: [
                                                     Container(
-                                                      margin:
-                                                          EdgeInsets.all(10),
+                                                      margin: EdgeInsets.all(8),
                                                       child: Column(
                                                         crossAxisAlignment:
                                                             CrossAxisAlignment
@@ -685,7 +684,7 @@ class _HomePageState extends State<HomePage> {
                                                     children: [
                                                       Container(
                                                         margin:
-                                                            EdgeInsets.all(10),
+                                                            EdgeInsets.all(8),
                                                         child: Column(
                                                           crossAxisAlignment:
                                                               CrossAxisAlignment
@@ -819,7 +818,7 @@ class _HomePageState extends State<HomePage> {
                                                     children: [
                                                       Container(
                                                         margin:
-                                                            EdgeInsets.all(10),
+                                                            EdgeInsets.all(8),
                                                         child: Column(
                                                           crossAxisAlignment:
                                                               CrossAxisAlignment

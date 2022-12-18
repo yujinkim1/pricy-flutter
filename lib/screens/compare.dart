@@ -148,54 +148,86 @@ class _Compare extends State<ComparePage> {
                         ]))
                   ],
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                Column(
                   children: [
-                    Container(
-                      margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      height: MediaQuery.of(context).size.height * 0.1,
-                      decoration: BoxDecoration(
-                        color: Palette.containerColor,
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 0,
-                            color: Palette.shadowColor,
-                            offset: Offset(0, 5),
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      alignment: AlignmentDirectional(0, 0),
-                      child: TextField(
-                        onSubmitted: (text) {
-                          setState(() {
-                            inputText = text;
-                          });
-                        },
-                        obscureText: false,
-                        decoration: InputDecoration(
-                            border: InputBorder.none,
-                            labelText: '비교할 금액을 입력하세요',
-                            filled: true,
-                            fillColor: Palette.containerColor),
-                        keyboardType: Platform.isIOS
-                            ? TextInputType.numberWithOptions(
-                                signed: true, decimal: true)
-                            : TextInputType.number,
-                        textInputAction: TextInputAction.done,
-                        inputFormatters: <TextInputFormatter>[
-                          FilteringTextInputFormatter.digitsOnly
-                        ],
-                      ),
-                    )
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                            margin: EdgeInsets.fromLTRB(20, 15, 0, 0),
+                            child: Text(
+                              "금일 가격 : ${theDay}원",
+                              style: TextStyle(
+                                  color: Palette.elementColor,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600),
+                            )),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                          width: MediaQuery.of(context).size.width * 0.9,
+                          height: MediaQuery.of(context).size.height * 0.1,
+                          decoration: BoxDecoration(
+                            color: Palette.screensColor,
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 0,
+                                color: Palette.screensColor,
+                                offset: Offset(0, 5),
+                              )
+                            ],
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          alignment: AlignmentDirectional(0, 0),
+                          child: TextField(
+                            onSubmitted: (text) {
+                              setState(() {
+                                inputText = text;
+                              });
+                            },
+                            cursorColor: Palette.highLightColor,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Palette.elementColor),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5.0))),
+                                labelText: '비교할 금액을 입력하세요',
+                                labelStyle:
+                                    TextStyle(color: Palette.elementColor),
+                                enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 1, color: Palette.elementColor)),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 2,
+                                        color: Palette.highLightColor)),
+                                filled: true,
+                                fillColor: Palette.screensColor),
+                            keyboardType: Platform.isIOS
+                                ? TextInputType.numberWithOptions(
+                                    signed: true, decimal: true)
+                                : TextInputType.number,
+                            textInputAction: TextInputAction.done,
+                            inputFormatters: <TextInputFormatter>[
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                        margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                        margin: EdgeInsets.fromLTRB(0, 5, 0, 0),
                         width: MediaQuery.of(context).size.width * 0.9,
                         height: MediaQuery.of(context).size.height * 0.1,
                         alignment: AlignmentDirectional(-1, 0),
@@ -210,20 +242,16 @@ class _Compare extends State<ComparePage> {
                                   offset: Offset(0, 5))
                             ]),
                         child: Padding(
-                          padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                          padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "금일 가격 : ${theDay} 원",
+                                "입력 가격 : ${inputText}원",
                                 style: Styles.dprText,
                               ),
                               Text(
-                                "입력 가격 : ${inputText} 원",
-                                style: Styles.dprText,
-                              ),
-                              Text(
-                                "차액 : ${-(result)} 원",
+                                "차액 : ${-(result)}원",
                                 style: Styles.dprText,
                               ),
                             ],

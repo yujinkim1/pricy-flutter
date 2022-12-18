@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       title: 'Pricy',
       theme: ThemeData(
           scaffoldBackgroundColor: Palette.screensColor,
-          fontFamily: 'NotoSans'),
+          fontFamily: 'NotoSansKR'),
       home: const HomePage(),
     );
   }
