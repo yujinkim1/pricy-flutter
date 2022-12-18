@@ -29,8 +29,7 @@ class Palette {
 }
 /*
   MARK: IS PRIMARYSWATCH NEEDS ? REMOVE COMMENT LINES
-  static const MaterialColor colorSet = const MaterialColor(
-    0xffe8eaf6,
+  static const MaterialColor colorSets = const MaterialColor(
     const <int, Color>{
       50: const Color(0xffe8eaf6),
       100: const Color(0xffc5cae9),

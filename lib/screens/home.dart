@@ -4,8 +4,6 @@ import 'compare.dart';
 import '/providers/dailyByData.dart';
 import '/utilities/styles.dart';
 
-//MARK: DEFINED TEXTEDITING CONTROLLER
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -15,19 +13,28 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late Future<PriceList> futureDaily;
-
-  //MARK: -API CALL
+  //MARK: FOCUSING NODE WILL BE CHANGE ICONS COLOR
+  List<FocusNode> _focusNodes = [
+    FocusNode(),
+    FocusNode(),
+  ];
+  //MARK: CALL API
   @override
   void initState() {
     super.initState();
     futureDaily = fetchDaily();
+    _focusNodes.forEach((node) {
+      node.addListener(() {
+        setState(() {});
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     int searchTextIndex = 0;
     final _searchInputcontroller = TextEditingController(); //검색 컨트롤러
-    String searchText = ''; //검색어
+    String searchText = ''; //키워드 변수
     //MARK: DEFAULT TAB CONTORLLER
     return DefaultTabController(
       length: 5,
@@ -52,37 +59,59 @@ class _HomePageState extends State<HomePage> {
                   barrierDismissible: true,
                   builder: (BuildContext context) {
                     return AlertDialog(
+                      scrollable: false,
                       title: const Text("앱 정보",
                           style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold)),
+                              fontSize: 25, fontWeight: FontWeight.bold)),
                       backgroundColor: Palette.screensColor,
                       content: SingleChildScrollView(
                         child: ListBody(
                           children: const [
                             //MARK: APP INFORMATION
-                            Text("Sungkonghoe University",
+                            Text("기여자",
                                 style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold)),
-                            Text("김유진",
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.normal)),
-                            Text("박현렬",
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.normal)),
-                            Text("이진우",
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.normal)),
+                                    fontSize: 20, fontWeight: FontWeight.bold)),
+                            Center(
+                              heightFactor: 3,
+                              child: Text("김유진 yujinkim1.dev@gmail.com",
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500)),
+                            ),
+                            Center(
+                              heightFactor: 3,
+                              child: Text("박현렬 devpark435@gmail.com",
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500)),
+                            ),
+                            Center(
+                              heightFactor: 3,
+                              child: Text("이진우 doglife222@gmail.com",
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500)),
+                            ),
                             Text("API 제공처",
                                 style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold)),
-                            Text("KAMIS",
-                                style: TextStyle(
-                                    fontSize: 30,
-                                    color: Palette.normalTextColor,
-                                    fontWeight: FontWeight.bold))
+                                    color: Palette.elementColor,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold)),
+                            Center(
+                              heightFactor: 3,
+                              child: Text("KAMIS",
+                                  style: TextStyle(
+                                      color: Palette.normalTextColor,
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                            Center(
+                                child: Text(
+                              "버전 1.0.1",
+                              style: TextStyle(
+                                  color: Palette.elementColor,
+                                  fontWeight: FontWeight.w100),
+                            ))
                           ],
                         ),
                       ),
@@ -111,7 +140,7 @@ class _HomePageState extends State<HomePage> {
                 fontWeight: FontWeight.bold),
             unselectedLabelStyle:
                 TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
-            unselectedLabelColor: Palette.normalTextColor,
+            unselectedLabelColor: Palette.elementColor,
             tabs: <Widget>[
               Tab(
                 child: Text("식량작물"),
@@ -138,27 +167,37 @@ class _HomePageState extends State<HomePage> {
                 builder: (BuildContext context, snapshot) {
                   var searchItems = snapshot.data?.price;
                   return Padding(
-                    //SearchBar
+                    //MARK: SEARCH BAR
                     padding: const EdgeInsets.all(10.0),
                     child: Container(
-                      height: 50,
+                      height: 60,
                       width: MediaQuery.of(context).size.width * 0.9,
-                      decoration: BoxDecoration(
-                          // border: Border.all(width: 1, color: Palette.decreaseColor),
-                          borderRadius: BorderRadius.circular(15)),
                       child: TextField(
+                        cursorColor: Palette.highLightColor,
                         controller: _searchInputcontroller,
                         decoration: InputDecoration(
                             filled: true,
+                            fillColor: Palette.screensColor,
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    width: 1, color: Palette.elementColor)),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    width: 2, color: Palette.highLightColor)),
                             border: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Palette.elementColor),
                                 borderRadius: BorderRadius.all(
-                              Radius.circular(20.0),
-                            )),
+                                  Radius.circular(5.0),
+                                )),
                             prefixIcon: IconButton(
-                              icon: Icon(Icons.search),
+                              padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                              icon: Icon(Icons.search,
+                                  color: _focusNodes[0].hasFocus
+                                      ? Palette.highLightColor
+                                      : Palette.elementColor),
                               onPressed: () {
                                 var datas = searchItems![searchTextIndex];
-
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -167,7 +206,12 @@ class _HomePageState extends State<HomePage> {
                               },
                             ),
                             suffixIcon: IconButton(
-                              icon: Icon(Icons.clear),
+                              padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                              icon: Icon(Icons.clear,
+                                  color: _focusNodes[0].hasFocus
+                                      ? Palette.highLightColor
+                                      : Palette.elementColor),
+                              focusColor: Palette.highLightColor,
                               onPressed: () {
                                 _searchInputcontroller.clear();
                               },
